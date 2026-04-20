@@ -18,7 +18,8 @@ import { FondosMutuosPage } from "../pages/operaciones/renta-variable/FondosMutu
 import { BonosPage } from "../pages/operaciones/renta-fija/Bonos";
 import { DerivadosPage } from "../pages/operaciones/DerivadosPage";
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+[
   {
     path: "/",
     element: <MainLayout />,
@@ -90,4 +91,7 @@ export const router = createBrowserRouter([
       }
     ]
   }
-]);
+],{
+    basename: "/key-investments-frontend" 
+  }
+);
