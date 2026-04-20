@@ -14,6 +14,7 @@ export default defineConfig({
     ],
   },
   plugins: [react()],
+  base: '/key-investments-frontend/',
   server: {
     host: false,
     port: 5173
