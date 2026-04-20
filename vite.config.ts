@@ -14,7 +14,8 @@ export default defineConfig({
     ],
   },
   plugins: [react()],
-  base: '/key-investments-frontend/',
+  //base: '/key-investments-frontend/', // Configuración para GitHub Pages
+  base: '/',
   server: {
     host: false,
     port: 5173
