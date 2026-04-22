@@ -14,11 +14,18 @@
     position: static !important;
     display: inline-block !important;
 }
-/*
-.ps-collapsed .ps-menu-root .ps-submenu-root .ps-menu-icon{
-    margin: 0px 10px 0px 0px;
+
+/* Custom header styling */
+.ag-header-cell-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.05em;
+    font-size: 0.85em;
+    word-break: break-word;
+    text-align: end;
 }
-.ps-collapsed .ps-menu-root .ps-menuitem-root .ps-active {
-    margin: 0px 10px 0px 0px;
+
+/* Custom cell styling */
+.MuiInputBase-sizeSmall input.MuiInputBase-inputSizeSmall{
+    padding: 6.5px 14px;
 }
-*/

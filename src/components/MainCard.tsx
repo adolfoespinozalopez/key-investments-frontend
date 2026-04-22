@@ -92,7 +92,7 @@ const MainCard = forwardRef(
         {/* card header and action */}
         {!darkTitle && title && (
           <CardHeader
-            sx={{ p: 2.5 }}
+            sx={{ p: 2, pt: 1.5, pb: 1.5, px: 2}}
             slotProps={{
               title: { variant: 'subtitle1' },
               action: { sx: { m: '0px auto', alignSelf: 'center' } }
@@ -105,9 +105,10 @@ const MainCard = forwardRef(
 
         {darkTitle && title && (
           <CardHeader
-            sx={{ p: 2.5 }}
+            sx={{ p: 2, pt: 1.5, pb: 1.5, px: 2}}
             slotProps={{
-              title: { variant: 'h4' }
+              title: { variant: 'subtitle1' },
+              action: { sx: { m: '0px auto', alignSelf: 'center' } }
             }}
             title={title}
             action={secondary}

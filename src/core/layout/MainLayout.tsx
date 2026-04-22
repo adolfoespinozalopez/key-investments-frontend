@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet, Link as RouterLink } from "react-router-dom";
-import { Box, Toolbar, Typography, useMediaQuery } from "@mui/material";
+import { Box, Toolbar, useMediaQuery } from "@mui/material";
 import { AppSidebar } from "./Sidebar";
 import { Header } from "./Header";
 import { DRAWER_WIDTH } from '../../config';
