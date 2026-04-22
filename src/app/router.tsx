@@ -13,6 +13,7 @@ import { EmpresaPage } from "../pages/definicion/EmpresaPage";
 import { MercadoPage } from "../pages/definicion/MercadoPage";
 import { PolizaPage } from "../pages/definicion/PolizaPage";
 import { AccionesPage } from "../pages/operaciones/renta-variable/Acciones";
+import { AccionFormPage } from "../pages/operaciones/renta-variable/AccionFormPage";
 import { DepositosPage } from "../pages/operaciones/renta-fija/Depositos";
 import { FondosMutuosPage } from "../pages/operaciones/renta-variable/FondosMutuos";
 import { BonosPage } from "../pages/operaciones/renta-fija/Bonos";
@@ -50,15 +51,22 @@ export const router = createBrowserRouter(
           {
             path: "renta-variable",
             children: [
-              { path: "acciones", element: <AccionesPage /> }, // Reemplazar por componente real
-              { path: "fondos-mutuos", element: <FondosMutuosPage /> } // Reemplazar por componente real
+              { path: "acciones", element: <AccionesPage /> },
+              // 🚀 2. NUEVA RUTA: Formulario de creación
+              // La URL final será: /operaciones/renta-variable/acciones/crear
+              { 
+                path: "acciones/crear", 
+                element: <AccionFormPage /> 
+              },
+
+              { path: "fondos-mutuos", element: <FondosMutuosPage /> }
             ]
           },
           {
             path: "renta-fija",
             children: [
-              { path: "depositos", element: <DepositosPage /> }, // Reemplazar por componente real
-              { path: "bonos", element: <BonosPage /> } // Reemplazar por componente real
+              { path: "depositos", element: <DepositosPage /> },
+              { path: "bonos", element: <BonosPage /> }
             ]
           },
           {

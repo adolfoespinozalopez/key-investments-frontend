@@ -5,6 +5,9 @@ import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 
+//otros
+import { useNavigate } from 'react-router-dom';
+
 // project imports
 import MainCard from '../../../components/MainCard';
 
@@ -59,8 +62,11 @@ export const AccionesPage: React.FC = () => {
   const open = Boolean(anchorEl);
   const id = open ? 'column-popover' : undefined;
   const [searchTerm, setSearchTerm] = useState('');
+
   // Un objeto donde la llave es el field y el valor es un booleano (true = visible)
   const [visibleColumns, setVisibleColumns] = useState<Record<string, boolean>>({});
+
+  const navigate = useNavigate();
 
   // Definición de Columnas con Tipado ColDef
   const columnDefs = useMemo<ColDef<Accion>[]>(() => [
@@ -329,6 +335,7 @@ export const AccionesPage: React.FC = () => {
               mt: { xs: 1, sm: 0 }, // Margen superior solo en móviles
               height: { xs: 45, sm: 'auto' }
             }}
+            onClick={() => navigate('crear')} // Ruta hacia la nueva página
           >
             Crear
           </Button>
