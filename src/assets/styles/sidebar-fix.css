@@ -24,8 +24,3 @@
     word-break: break-word;
     text-align: end;
 }
-
-/* Custom cell styling */
-.MuiInputBase-sizeSmall input.MuiInputBase-inputSizeSmall{
-    padding: 6.5px 14px;
-}
