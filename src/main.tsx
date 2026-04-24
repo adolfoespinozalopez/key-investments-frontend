@@ -3,7 +3,12 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './app/router'
 import { AppProviders } from './app/providers'
+//Hoja de estilo personalizada
 import './assets/styles/sidebar-fix.css'
+
+//Hoja de estilos globales (Tailwind) 
+import './main.css'
+
 import ScrollTop from './components/ScrollTop'
 
 // SE IMPORTA LAS FUENTES AQUÍ
