@@ -81,10 +81,7 @@ export const AccionFormPage: React.FC = () => {
                                     onChange={(newValue) => setValue(newValue)}
                                     // Formato solicitado: Apr 17, 2023
                                     format="MMM DD, YYYY"
-                                    
-                                    
                                 />
-                                
                             </LocalizationProvider>
                         </Grid>
                     </Grid>

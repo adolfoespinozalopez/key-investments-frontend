@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { 
-  Box, 
-  TextField, 
-  MenuItem, 
-  Button, 
-  Typography, 
-  IconButton, 
-  InputAdornment, 
+import {
+  Box,
+  TextField,
+  MenuItem,
+  Button,
+  Typography,
+  IconButton,
+  InputAdornment,
   Paper,
   Modal,
   Grid
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import SaveIcon from '@mui/icons-material/Save';
+
+//fecha
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { CancelTwoTone } from '@mui/icons-material';
+import { _getGrandTotalRow } from 'ag-grid-community';
 
 const modalStyle = {
   position: 'absolute' as const,
@@ -41,7 +48,10 @@ export const FormularioInstrumento: React.FC = () => {
       moneda: "Soles (PEN)",
       isin: "PEP123456789",
       custodia: "CAVALI",
-      sbs: "SBS-9988"
+      sbs: "SBS-9988",
+      cantidad: '',
+      precio: '',
+      total: ''
     }
   });
 
@@ -56,7 +66,7 @@ export const FormularioInstrumento: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* En MUI 7, Grid container ya no necesita que sus hijos tengan la prop 'item' */}
         <Grid container spacing={1.5}>
-          
+
           {/* PRIMERA FILA: Tipo y Nro Orden */}
           <Grid size={{ xs: 12, md: 6 }}>
             <Controller
@@ -86,10 +96,10 @@ export const FormularioInstrumento: React.FC = () => {
               name="mercado"
               control={control}
               render={({ field }) => (
-                <TextField 
-                  {...field} 
-                  label="Mercado" 
-                  fullWidth 
+                <TextField
+                  {...field}
+                  label="Mercado"
+                  fullWidth
                   size="small"
                   slotProps={{
                     input: {
@@ -126,10 +136,10 @@ export const FormularioInstrumento: React.FC = () => {
               name="accion"
               control={control}
               render={({ field }) => (
-                <TextField 
-                  {...field} 
-                  label="Acción" 
-                  fullWidth 
+                <TextField
+                  {...field}
+                  label="Acción"
+                  fullWidth
                   size="small"
                   slotProps={{
                     input: {
@@ -153,7 +163,7 @@ export const FormularioInstrumento: React.FC = () => {
               <Typography variant="caption" sx={{ fontWeight: 'bold', color: 'primary.main', display: 'block', mb: 1.5 }}>
                 DETALLE DE INSTRUMENTO
               </Typography>
-              
+
               <Grid container spacing={2}>
                 <Grid size={{ xs: 12, md: 6 }}>
                   <Controller name="moneda" control={control} render={({ field }) => (
@@ -177,6 +187,116 @@ export const FormularioInstrumento: React.FC = () => {
                 </Grid>
               </Grid>
             </Paper>
+          </Grid>
+
+          <Grid size={12}>
+            <fieldset style={{ marginTop: '1rem', borderRadius: '4px', padding: '1.5' }}>
+              <legend style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#555' }}>
+                Operación
+              </legend>
+              <Grid container spacing={2} alignItems="center" sx={{ mt: 0.5 }}>
+                {/* Primer campo: Izquierda */}
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
+                    <DatePicker
+                      format="DD/MM/YYYY"
+                      label="Fecha de Operación"
+                      slotProps={{
+                        textField: {
+                          size: 'small',
+                          sx: {
+                            // En móviles (xs) ocupa el 100%, en escritorio (md) vuelve a su ancho natural
+                            width: { xs: '100%', md: 'auto' },
+                            minWidth: { md: '250px' } // Opcional: para que no se vea muy pequeño en PC
+                          }
+                        }
+                      }}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+
+                {/* Segundo campo: Derecha */}
+                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Controller
+                    name="cantidad"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        label="Cantidad"
+                        size="small"
+                        variant="outlined"
+                        slotProps={{
+                          htmlInput: {
+                            style: { textAlign: 'right' }
+                          }
+                        }}
+                        sx={{
+                          width: { xs: '100%', md: '200px' }
+                        }}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          // Solo permite números (y opcionalmente un punto decimal)
+                          if (value === '' || /^[0-9\b]+$/.test(value)) {
+                            onChange(value);
+                          }
+                        }}
+                      />
+                    )}
+                  />
+                </Grid>
+              </Grid>
+              <Grid container spacing={2} alignItems="center" sx={{ mt: 1 }}>
+                <Grid size={{ xs: 0, md: 6 }} />
+                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
+                  <Controller
+                    name="precio"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        label="Precio"
+                        size="small"
+                        variant="outlined"
+                        slotProps={{
+                          htmlInput: {
+                            style: { textAlign: 'right' }
+                          }
+                        }}
+                        sx={{
+                          width: { xs: '100%', md: '200px' }
+                        }}
+                      />
+                    )}
+                  />
+                </Grid>
+              </Grid>
+              <Grid container spacing={2} alignItems="center" sx={{ mt: 1 }}>
+                <Grid size={{ xs: 0, md: 6 }} />
+                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
+                  <Controller
+                    name="total"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        label="Total"
+                        size="small"
+                        variant="outlined"
+                        slotProps={{
+                          htmlInput: {
+                            style: { textAlign: 'right' }
+                          }
+                        }}
+                        sx={{
+                          width: { xs: '100%', md: '200px' }
+                        }}
+                      />
+                    )}
+                  />
+                </Grid>
+              </Grid>
+            </fieldset>
           </Grid>
 
           <Grid size={12} sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
