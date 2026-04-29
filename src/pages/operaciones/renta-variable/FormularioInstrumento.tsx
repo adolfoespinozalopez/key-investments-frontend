@@ -58,7 +58,6 @@ export const FormularioInstrumento: React.FC = () => {
 
   return (
     <Box sx={{ width: '100%', p: 0, mt: 0 }}>
-      
 
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* En MUI 7, Grid container ya no necesita que sus hijos tengan la prop 'item' */}
@@ -191,11 +190,10 @@ export const FormularioInstrumento: React.FC = () => {
               </Grid>
             </Paper>
           </Grid>
-
-          <Grid size={12}>
-            <Grid container spacing={0.5} alignItems="center" sx={{ mt: 0.5 }}>
+          <Grid size={12} >
+            <Grid container spacing={2}>
               {/* Primer campo: Izquierda */}
-              <Grid size={{ xs: 12, md: 6 }}>
+              <Grid size={{ xs: 12, md: 3 }} sx={{ mt: 1 }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
                   <DatePicker
                     format="DD/MM/YYYY"
@@ -203,12 +201,7 @@ export const FormularioInstrumento: React.FC = () => {
                     className="xsmall-input-picker"
                     slotProps={{
                       textField: {
-                        size: 'small',
-                        sx: {
-                          // En móviles (xs) ocupa el 100%, en escritorio (md) vuelve a su ancho natural
-                          width: { xs: '100%', md: 'auto' },
-                          minWidth: { md: '250px' } // Opcional: para que no se vea muy pequeño en PC
-                        }
+                        size: 'small'
                       }
                     }}
                   />
@@ -216,7 +209,7 @@ export const FormularioInstrumento: React.FC = () => {
               </Grid>
 
               {/* Segundo campo: Derecha */}
-              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Grid size={{ xs: 12, md: 3 }} >
                 <Controller
                   name="cantidad"
                   control={control}
@@ -225,6 +218,7 @@ export const FormularioInstrumento: React.FC = () => {
                       {...field}
                       label="Cantidad"
                       size="small"
+                      fullWidth
                       variant="outlined"
                       className="xsmall-input"
                       slotProps={{
@@ -232,24 +226,12 @@ export const FormularioInstrumento: React.FC = () => {
                           style: { textAlign: 'right' }
                         }
                       }}
-                      sx={{
-                        width: { xs: '100%', md: '200px' }
-                      }}
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        // Solo permite números (y opcionalmente un punto decimal)
-                        if (value === '' || /^[0-9\b]+$/.test(value)) {
-                          onChange(value);
-                        }
-                      }}
                     />
                   )}
                 />
               </Grid>
-            </Grid>
-            <Grid container spacing={0.5} alignItems="center" sx={{ mt: 0.5 }}>
-              <Grid size={{ xs: 0, md: 6 }} />
-              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
+
+              <Grid size={{ xs: 12, md: 3 }} >
                 <Controller
                   name="precio"
                   control={control}
@@ -258,6 +240,7 @@ export const FormularioInstrumento: React.FC = () => {
                       {...field}
                       label="Precio"
                       size="small"
+                      fullWidth
                       variant="outlined"
                       className="xsmall-input"
                       slotProps={{
@@ -265,17 +248,12 @@ export const FormularioInstrumento: React.FC = () => {
                           style: { textAlign: 'right' }
                         }
                       }}
-                      sx={{
-                        width: { xs: '100%', md: '200px' }
-                      }}
                     />
                   )}
                 />
               </Grid>
-            </Grid>
-            <Grid container spacing={0.5} alignItems="center" sx={{ mt: 0.5 }}>
-              <Grid size={{ xs: 0, md: 6 }} />
-              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
+
+              <Grid size={{ xs: 12, md: 3 }} >
                 <Controller
                   name="total"
                   control={control}
@@ -284,6 +262,7 @@ export const FormularioInstrumento: React.FC = () => {
                       {...field}
                       label="Total"
                       size="small"
+                      fullWidth
                       variant="outlined"
                       className="xsmall-input"
                       slotProps={{

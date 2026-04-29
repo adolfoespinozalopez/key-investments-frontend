@@ -51,11 +51,7 @@ export const AccionFormPage: React.FC = () => {
         <MainCard title="Registro de Nueva Acción">
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Grid container spacing={0.5}>
-                    <Grid size={12} sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
-                        <Button type="submit" variant="contained" size="small" startIcon={<SaveIcon />} sx={{ textTransform: 'none' }}>
-                            Guardar Operación
-                        </Button>
-                    </Grid>
+                    
                     <Grid size={{ xs: 12, md: 6 }} sx={{ p: 1 }}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label" size='small'>Fondo</InputLabel>
