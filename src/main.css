@@ -1,0 +1,145 @@
+/* ==========================================================================
+   HOJA DE ESTILOS GLOBAL: DENSIDAD XSMALL (ALTA DENSIDAD)
+   Ideal para aplicaciones financieras y dashboards de mesa de dinero.
+   ========================================================================== */
+
+/* 1. TEXTFIELDS Y SELECTS (MUI) */
+
+/* 1. 1 TEXTFIELDS READ ONLY */
+.xsmall-input-read-only .MuiInputBase-input {
+    font-size: 0.75rem !important; /* 12px */
+    padding: 5px 10px 5px 2px !important;   /* Reducción de aire interno */
+    height: 1.2em !important;
+}
+.xsmall-input-read-only .MuiInputLabel-root {
+    font-size: 0.75rem !important;
+    transform: translate(4px, 10px) scale(1) !important;
+}
+.xsmall-input-read-only .MuiInputLabel-shrink {
+    transform: translate(2px, -7px) scale(1) !important;
+}
+.xsmall-input-read-only .MuiInputBase-sizeSmall {
+    margin-top: 10px !important;
+}
+
+/* 1. 1 TEXTFIELDS */
+.xsmall-input .MuiInputBase-input {
+    font-size: 0.75rem !important; /* 12px */
+    padding: 6px 10px 6px 10px !important;   /* Reducción de aire interno */
+    height: 1.8em !important;
+}
+.xsmall-input .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+    font-size: 0.75rem !important;
+    line-height: 1.4em !important;
+    /* Ajusta este translate para que el texto quede centrado verticalmente en tus 30px de altura */
+    transform: translate(6px, 18px) scale(1) !important;
+}
+.xsmall-input .MuiInputLabel-root.MuiInputLabel-shrink {
+    transform: translate(10px, 1px) scale(0.75) !important;
+    background-color: #fff; /* Evita que el borde del fieldset raye el texto */
+    padding: 0 4px !important;
+    font-weight: 600;
+}
+.xsmall-input .MuiInputBase-sizeSmall {
+    margin-top: 10px !important;
+}
+.xsmall-input .MuiFormControl-fullWidth{
+    transform: translate(9px, -9px) scale(0.75) !important;
+}
+
+/* 1. 1 DATE PICKER */
+.xsmall-input-picker .MuiInputBase-root {
+    height: 30px !important; /* Altura ultra compacta */
+    font-size: 0.75rem !important;
+    padding-right: 4px !important; /* Espacio para el ícono */
+}
+.xsmall-input-picker .MuiFormLabel-root {
+    /* Estado inicial: Ajustado manualmente al centro de los 30px */
+    transform: translate(14px, 10px) scale(1) !important;
+    font-size: 0.75rem !important;
+}
+.xsmall-input-picker .MuiFormLabel-root.MuiInputLabel-shrink {
+    /* Lo movemos fuera del borde para que no tape el texto */
+    transform: translate(14px, -8px) scale(0.75) !important;
+    background-color: #fff !important;
+    padding: 0 4px !important;
+}
+
+
+/* 2. BOTONES (MUI) */
+.xsmall-button {
+    font-size: 0.72rem !important;
+    padding: 2px 10px !important;
+    min-height: 28px !important;
+    min-width: auto !important;
+    text-transform: none !important;
+}
+
+/* 3. ELEMENTOS NATIVOS HTML (ul, li, span, label, input, div) */
+
+/* Listas compactas */
+ul.xsmall-list, .xsmall-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.xsmall-list li {
+    font-size: 0.75rem;
+    padding: 2px 0;
+    line-height: 1.4;
+}
+
+/* Etiquetas y Textos */
+span.xsmall-text, label.xsmall-text {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #555;
+    line-height: 1;
+}
+
+/* Input nativo (por si no usas MUI en algún campo) */
+input.xsmall-native-input {
+    font-size: 0.75rem;
+    padding: 3px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Contenedores de filas compactas */
+div.xsmall-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+/* Ajuste para iconos dentro de elementos xsmall */
+.xsmall-container svg, .xsmall-button svg {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+}
+
+/* TABS */
+
+/* Reducir la altura del contenedor principal de Tabs */
+.xsmall-tabs {
+    min-height: 32px !important; /* Altura total de la barra de pestañas */
+}
+
+.xsmall-tabs .MuiTabs-flexContainer {
+    height: 32px;
+}
+
+/* Reducir el tamaño de cada pestaña individual */
+.xsmall-tabs .MuiTab-root {
+    min-height: 32px !important;
+    padding: 6px 10px !important; /* Espaciado interno reducido */
+    font-size: 0.75rem !important; /* Fuente de 12px */
+    text-transform: none !important; /* Evita mayúsculas forzadas */
+}
+
+/* Ajustar el indicador (la línea que se mueve abajo) */
+.xsmall-tabs .MuiTabs-indicator {
+    height: 2px !important;
+}

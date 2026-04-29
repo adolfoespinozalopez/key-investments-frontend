@@ -4,10 +4,12 @@ import MainCard from '../../../components/MainCard';
 
 //fecha
 import dayjs, { Dayjs } from 'dayjs';
+import 'dayjs/locale/es';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import SaveIcon from '@mui/icons-material/Save';
 
 //otros
 import { useNavigate } from 'react-router-dom';
@@ -38,7 +40,7 @@ export const AccionFormPage: React.FC = () => {
         setFondo(event.target.value as string);
     };
 
-    const [value, setValue] = useState<Dayjs | null>(dayjs('2023-04-17'));
+    const [value, setValue] = useState<Dayjs | null>(dayjs('2026-04-28'));
     const [open, setOpen] = useState(false);
 
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
@@ -47,68 +49,77 @@ export const AccionFormPage: React.FC = () => {
 
     return (
         <MainCard title="Registro de Nueva Acción">
-            <Box sx={{ width: '100%' }}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Grid container spacing={2}>
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label" size='small'>Fondo</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={fondo}
-                                    label="Age"
-                                    size="small"
-                                    onChange={handleChange}
-                                >
-                                    <MenuItem value={1}>Fondo 1</MenuItem>
-                                    <MenuItem value={2}>Fondo 2</MenuItem>
-                                    <MenuItem value={3}>Fondo 3</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-                        <Grid size={{ xs: 12, md: 6 }} display="flex" justifyContent="flex-end">
-
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                
-                                <DatePicker
-                                    label="Fecha de Operación"
-                                    slotProps={{ textField: { size: 'small' } }}
-                                    open={open}
-                                    onOpen={() => setOpen(true)}
-                                    onClose={() => setOpen(false)}
-                                    value={value}
-                                    onChange={(newValue) => setValue(newValue)}
-                                    // Formato solicitado: Apr 17, 2023
-                                    format="MMM DD, YYYY"
-                                />
-                            </LocalizationProvider>
-                        </Grid>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Grid container spacing={0.5}>
+                    <Grid size={12} sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
+                        <Button type="submit" variant="contained" size="small" startIcon={<SaveIcon />} sx={{ textTransform: 'none' }}>
+                            Guardar Operación
+                        </Button>
                     </Grid>
-                    <Grid >
-                        <Divider sx={{ mb: 1 }} />
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ p: 1 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label" size='small'>Fondo</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={fondo}
+                                label="Age"
+                                size="small"
+                                onChange={handleChange}
+                                className="xsmall-input"
+                            >
+                                <MenuItem value={1}>Fondo 1</MenuItem>
+                                <MenuItem value={2}>Fondo 2</MenuItem>
+                                <MenuItem value={3}>Fondo 3</MenuItem>
+                            </Select>
+                        </FormControl>
                     </Grid>
-                    <Tabs value={tabValue} onChange={handleChangeTab} aria-label="tabs registro">
-                        <Tab label="Ficha de Registro" sx={{ fontWeight: 600 }} />
-                        <Tab label="Regla de Límites Afectos" sx={{ fontWeight: 600 }} />
-                    </Tabs>
-                </Box>
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ p:1, display: 'flex', justifyContent: 'flex-end' }}>
+                        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
+                            <DatePicker
+                                label="Fecha de Operación"
+                                open={open}
+                                onOpen={() => setOpen(true)}
+                                onClose={() => setOpen(false)}
+                                value={value}
+                                onChange={(newValue) => setValue(newValue)}
+                                // Formato solicitado: Apr 17, 2023
+                                format="MMM DD, YYYY"
+                                slotProps={{
+                                    textField: {
+                                        size: 'small',
+                                        sx: {
+                                            // En móviles (xs) ocupa el 100%, en escritorio (md) vuelve a su ancho natural
+                                            width: { xs: '100%', md: 'auto' },
+                                            minWidth: { md: '250px' } // Opcional: para que no se vea muy pequeño en PC
+                                        }
+                                    }
+                                }}
+                            />
+                        </LocalizationProvider>
+                    </Grid>
+                </Grid>
 
-                {/* TAB 1: Ficha de Registro */}
-                <CustomTabPanel value={tabValue} index={0}>
-                    <FormularioInstrumento />
-                </CustomTabPanel>
-
-                {/* TAB 2: Regla de Límites */}
-                <CustomTabPanel value={tabValue} index={1}>
-                    <Typography variant="body1" color="text.secondary">
-                        Aquí se configurarán las reglas de límites aplicables a esta operación.
-                    </Typography>
-                    {/* Puedes agregar aquí una tabla o más campos según necesites */}
-
-
-                </CustomTabPanel>
+                <Tabs value={tabValue} onChange={handleChangeTab} className="xsmall-tabs" aria-label="tabs registro" sx={{ p: 0 }}>
+                    <Tab label="Ficha de Registro" sx={{ fontWeight: 600, p: 0 }} />
+                    <Tab label="Regla de Límites Afectos" sx={{ fontWeight: 600 }} />
+                </Tabs>
             </Box>
+
+            {/* TAB 1: Ficha de Registro */}
+            <CustomTabPanel value={tabValue} index={0}>
+                <FormularioInstrumento />
+            </CustomTabPanel>
+
+            {/* TAB 2: Regla de Límites */}
+            <CustomTabPanel value={tabValue} index={1}>
+                <Typography variant="body1" color="text.secondary">
+                    Aquí se configurarán las reglas de límites aplicables a esta operación.
+                </Typography>
+                {/* Puedes agregar aquí una tabla o más campos según necesites */}
+
+            </CustomTabPanel>
+            
         </MainCard>
     );
 };

@@ -13,7 +13,6 @@ import {
   Grid
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import SaveIcon from '@mui/icons-material/Save';
 
 //fecha
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -58,14 +57,12 @@ export const FormularioInstrumento: React.FC = () => {
   const onSubmit = (data: any) => console.log("Operación guardada:", data);
 
   return (
-    <Box sx={{ width: '100%', p: 1, mt: 0 }}>
-      <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1.5, borderBottom: '1px solid #ddd', pb: 0.5 }}>
-        Datos de Operación
-      </Typography>
+    <Box sx={{ width: '100%', p: 0, mt: 0 }}>
+      
 
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* En MUI 7, Grid container ya no necesita que sus hijos tengan la prop 'item' */}
-        <Grid container spacing={1.5}>
+        <Grid container spacing={0.5}>
 
           {/* PRIMERA FILA: Tipo y Nro Orden */}
           <Grid size={{ xs: 12, md: 6 }}>
@@ -73,7 +70,8 @@ export const FormularioInstrumento: React.FC = () => {
               name="tipo"
               control={control}
               render={({ field }) => (
-                <TextField {...field} select label="Tipo" fullWidth size="small">
+                <TextField {...field} select label="Tipo" fullWidth
+                  size="small" className="xsmall-input">
                   <MenuItem value="1">Compra</MenuItem>
                   <MenuItem value="2">Venta</MenuItem>
                 </TextField>
@@ -85,7 +83,9 @@ export const FormularioInstrumento: React.FC = () => {
               name="nroOrden"
               control={control}
               render={({ field }) => (
-                <TextField {...field} label="Número de Orden" fullWidth size="small" disabled variant="filled" />
+                <TextField {...field} label="Número de Orden" fullWidth
+                  size="small" className="xsmall-input"
+                  disabled variant="filled" />
               )}
             />
           </Grid>
@@ -101,6 +101,7 @@ export const FormularioInstrumento: React.FC = () => {
                   label="Mercado"
                   fullWidth
                   size="small"
+                  className="xsmall-input"
                   slotProps={{
                     input: {
                       endAdornment: (
@@ -121,7 +122,8 @@ export const FormularioInstrumento: React.FC = () => {
               name="agente"
               control={control}
               render={({ field }) => (
-                <TextField {...field} select label="Agente" fullWidth size="small">
+                <TextField {...field} select label="Agente" fullWidth
+                  size="small" className="xsmall-input">
                   <MenuItem value="agente1">Agente 1</MenuItem>
                   <MenuItem value="agente2">Agente 2</MenuItem>
                   <MenuItem value="agente3">Agente 3</MenuItem>
@@ -141,6 +143,7 @@ export const FormularioInstrumento: React.FC = () => {
                   label="Acción"
                   fullWidth
                   size="small"
+                  className="xsmall-input"
                   slotProps={{
                     input: {
                       endAdornment: (
@@ -160,29 +163,29 @@ export const FormularioInstrumento: React.FC = () => {
           {/* CUARTA FILA: Detalle de Instrumento */}
           <Grid size={12}>
             <Paper variant="outlined" sx={{ p: 1.5, mt: 1, bgcolor: '#fbfbfb' }}>
-              <Typography variant="caption" sx={{ fontWeight: 'bold', color: 'primary.main', display: 'block', mb: 1.5 }}>
+              <Typography variant="caption" sx={{ fontWeight: 'bold', color: 'primary.main', display: 'block', mb: 1 }}>
                 DETALLE DE INSTRUMENTO
               </Typography>
 
               <Grid container spacing={2}>
-                <Grid size={{ xs: 12, md: 6 }}>
+                <Grid size={{ xs: 12, md: 3 }}>
                   <Controller name="moneda" control={control} render={({ field }) => (
-                    <TextField {...field} label="Moneda" fullWidth size="small" variant="standard" slotProps={{ input: { readOnly: true } }} />
+                    <TextField {...field} label="Moneda" fullWidth className="xsmall-input-read-only" size="small" variant="standard" slotProps={{ input: { readOnly: true } }} />
                   )} />
                 </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
+                <Grid size={{ xs: 12, md: 3 }}>
                   <Controller name="isin" control={control} render={({ field }) => (
-                    <TextField {...field} label="Código ISIN" fullWidth size="small" variant="standard" slotProps={{ input: { readOnly: true } }} />
+                    <TextField {...field} label="Código ISIN" fullWidth className="xsmall-input-read-only" size="small" variant="standard" slotProps={{ input: { readOnly: true } }} />
                   )} />
                 </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
+                <Grid size={{ xs: 12, md: 3 }}>
                   <Controller name="custodia" control={control} render={({ field }) => (
-                    <TextField {...field} label="Tipo Custodia" fullWidth size="small" variant="standard" slotProps={{ input: { readOnly: true } }} />
+                    <TextField {...field} label="Tipo Custodia" fullWidth className="xsmall-input-read-only" size="small" variant="standard" slotProps={{ input: { readOnly: true } }} />
                   )} />
                 </Grid>
-                <Grid size={{ xs: 12, md: 6 }}>
+                <Grid size={{ xs: 12, md: 3 }}>
                   <Controller name="sbs" control={control} render={({ field }) => (
-                    <TextField {...field} label="Código SBS" fullWidth size="small" variant="standard" slotProps={{ input: { readOnly: true } }} />
+                    <TextField {...field} label="Código SBS" fullWidth className="xsmall-input-read-only" size="small" variant="standard" slotProps={{ input: { readOnly: true } }} />
                   )} />
                 </Grid>
               </Grid>
@@ -190,119 +193,112 @@ export const FormularioInstrumento: React.FC = () => {
           </Grid>
 
           <Grid size={12}>
-            <fieldset style={{ marginTop: '1rem', borderRadius: '4px', padding: '1.5' }}>
-              <legend style={{ fontSize: '0.75rem', fontWeight: 'bold', color: '#555' }}>
-                Operación
-              </legend>
-              <Grid container spacing={2} alignItems="center" sx={{ mt: 0.5 }}>
-                {/* Primer campo: Izquierda */}
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
-                    <DatePicker
-                      format="DD/MM/YYYY"
-                      label="Fecha de Operación"
+            <Grid container spacing={0.5} alignItems="center" sx={{ mt: 0.5 }}>
+              {/* Primer campo: Izquierda */}
+              <Grid size={{ xs: 12, md: 6 }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
+                  <DatePicker
+                    format="DD/MM/YYYY"
+                    label="Fecha de Liquidacion"
+                    className="xsmall-input-picker"
+                    slotProps={{
+                      textField: {
+                        size: 'small',
+                        sx: {
+                          // En móviles (xs) ocupa el 100%, en escritorio (md) vuelve a su ancho natural
+                          width: { xs: '100%', md: 'auto' },
+                          minWidth: { md: '250px' } // Opcional: para que no se vea muy pequeño en PC
+                        }
+                      }
+                    }}
+                  />
+                </LocalizationProvider>
+              </Grid>
+
+              {/* Segundo campo: Derecha */}
+              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Controller
+                  name="cantidad"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Cantidad"
+                      size="small"
+                      variant="outlined"
+                      className="xsmall-input"
                       slotProps={{
-                        textField: {
-                          size: 'small',
-                          sx: {
-                            // En móviles (xs) ocupa el 100%, en escritorio (md) vuelve a su ancho natural
-                            width: { xs: '100%', md: 'auto' },
-                            minWidth: { md: '250px' } // Opcional: para que no se vea muy pequeño en PC
-                          }
+                        htmlInput: {
+                          style: { textAlign: 'right' }
+                        }
+                      }}
+                      sx={{
+                        width: { xs: '100%', md: '200px' }
+                      }}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        // Solo permite números (y opcionalmente un punto decimal)
+                        if (value === '' || /^[0-9\b]+$/.test(value)) {
+                          onChange(value);
                         }
                       }}
                     />
-                  </LocalizationProvider>
-                </Grid>
-
-                {/* Segundo campo: Derecha */}
-                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Controller
-                    name="cantidad"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        label="Cantidad"
-                        size="small"
-                        variant="outlined"
-                        slotProps={{
-                          htmlInput: {
-                            style: { textAlign: 'right' }
-                          }
-                        }}
-                        sx={{
-                          width: { xs: '100%', md: '200px' }
-                        }}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          // Solo permite números (y opcionalmente un punto decimal)
-                          if (value === '' || /^[0-9\b]+$/.test(value)) {
-                            onChange(value);
-                          }
-                        }}
-                      />
-                    )}
-                  />
-                </Grid>
+                  )}
+                />
               </Grid>
-              <Grid container spacing={2} alignItems="center" sx={{ mt: 1 }}>
-                <Grid size={{ xs: 0, md: 6 }} />
-                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
-                  <Controller
-                    name="precio"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        label="Precio"
-                        size="small"
-                        variant="outlined"
-                        slotProps={{
-                          htmlInput: {
-                            style: { textAlign: 'right' }
-                          }
-                        }}
-                        sx={{
-                          width: { xs: '100%', md: '200px' }
-                        }}
-                      />
-                    )}
-                  />
-                </Grid>
+            </Grid>
+            <Grid container spacing={0.5} alignItems="center" sx={{ mt: 0.5 }}>
+              <Grid size={{ xs: 0, md: 6 }} />
+              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
+                <Controller
+                  name="precio"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Precio"
+                      size="small"
+                      variant="outlined"
+                      className="xsmall-input"
+                      slotProps={{
+                        htmlInput: {
+                          style: { textAlign: 'right' }
+                        }
+                      }}
+                      sx={{
+                        width: { xs: '100%', md: '200px' }
+                      }}
+                    />
+                  )}
+                />
               </Grid>
-              <Grid container spacing={2} alignItems="center" sx={{ mt: 1 }}>
-                <Grid size={{ xs: 0, md: 6 }} />
-                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
-                  <Controller
-                    name="total"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        label="Total"
-                        size="small"
-                        variant="outlined"
-                        slotProps={{
-                          htmlInput: {
-                            style: { textAlign: 'right' }
-                          }
-                        }}
-                        sx={{
-                          width: { xs: '100%', md: '200px' }
-                        }}
-                      />
-                    )}
-                  />
-                </Grid>
+            </Grid>
+            <Grid container spacing={0.5} alignItems="center" sx={{ mt: 0.5 }}>
+              <Grid size={{ xs: 0, md: 6 }} />
+              <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
+                <Controller
+                  name="total"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Total"
+                      size="small"
+                      variant="outlined"
+                      className="xsmall-input"
+                      slotProps={{
+                        htmlInput: {
+                          style: { textAlign: 'right' }
+                        }
+                      }}
+                      sx={{
+                        width: { xs: '100%', md: '200px' }
+                      }}
+                    />
+                  )}
+                />
               </Grid>
-            </fieldset>
-          </Grid>
-
-          <Grid size={12} sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
-            <Button type="submit" variant="contained" size="small" startIcon={<SaveIcon />} sx={{ textTransform: 'none' }}>
-              Guardar Operación
-            </Button>
+            </Grid>
           </Grid>
         </Grid>
       </form>
