@@ -84,7 +84,7 @@ export const FormularioInstrumento: React.FC = () => {
               render={({ field }) => (
                 <TextField {...field} label="Número de Orden" fullWidth
                   size="small" className="xsmall-input"
-                  disabled variant="filled" />
+                  variant="outlined" slotProps={{ input: { readOnly: true } }} />
               )}
             />
           </Grid>
@@ -193,7 +193,7 @@ export const FormularioInstrumento: React.FC = () => {
           <Grid size={12} >
             <Grid container spacing={2}>
               {/* Primer campo: Izquierda */}
-              <Grid size={{ xs: 12, md: 3 }} sx={{ mt: 1 }}>
+              <Grid size={{ xs: 12, md: 3 }} sx={{ mt: 1.1 }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
                   <DatePicker
                     format="DD/MM/YYYY"
@@ -201,7 +201,11 @@ export const FormularioInstrumento: React.FC = () => {
                     className="xsmall-input-picker"
                     slotProps={{
                       textField: {
-                        size: 'small'
+                          size: 'small',
+                          className: 'xsmall-input-picker',
+                          sx: {
+                              width: { xs: '100%', md: 'auto' }
+                          }
                       }
                     }}
                   />

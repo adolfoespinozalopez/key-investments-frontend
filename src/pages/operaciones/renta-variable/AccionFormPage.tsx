@@ -10,6 +10,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import SaveIcon from '@mui/icons-material/Save';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 //otros
 import { useNavigate } from 'react-router-dom';
@@ -49,17 +50,52 @@ export const AccionFormPage: React.FC = () => {
 
     return (
         <MainCard title="Registro de Nueva Acción">
+            <Grid container spacing={2}
+                sx={{
+                    ml: 1, mr: 1, mt: 0, mb: 1, p: 0.5, justifyContent: 'flex-end',
+                    backgroundColor: '#fbfbfb', borderRadius: 2, border: '1px solid #e0e0e0'
+                }}>
+                {/* Botón Salir: Estilo secundario o Outline */}
+                <Grid size="auto" >
+                    <Button
+                        variant="text"
+                        color="inherit"
+                        size="small"
+                        className="xsmall-button"
+                        startIcon={<KeyboardBackspaceIcon />}
+                        onClick={() => navigate('..', { relative: 'path' })} // Regresa al listado
+                        sx={{ fontWeight: 'bold' }}
+                    >
+                        Regresar
+                    </Button>
+                </Grid>
+
+                {/* Botón Grabar: Estilo primario o Success */}
+                <Grid size="auto">
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        className="xsmall-button"
+                        startIcon={<SaveIcon />}
+                        sx={{ textTransform: 'none', fontWeight: 'bold' }}
+                    >
+                        Grabar Operación
+                    </Button>
+                </Grid>
+            </Grid>
+
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Grid container spacing={0.5}>
-                    
+
                     <Grid size={{ xs: 12, md: 6 }} sx={{ p: 1 }}>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label" size='small'>Fondo</InputLabel>
-                            <Select
+                            <InputLabel id="demo-simple-select-label" size="small" className="xsmall-input">Fondo</InputLabel>
+                            <Select 
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={fondo}
-                                label="Age"
                                 size="small"
                                 onChange={handleChange}
                                 className="xsmall-input"
@@ -79,19 +115,18 @@ export const AccionFormPage: React.FC = () => {
                                 onClose={() => setOpen(false)}
                                 value={value}
                                 onChange={(newValue) => setValue(newValue)}
-                                // Formato solicitado: Apr 17, 2023
-                                format="MMM DD, YYYY"
+                                format="DD/MM/YYYY"
                                 slotProps={{
                                     textField: {
                                         size: 'small',
+                                        className: 'xsmall-input-picker',
                                         sx: {
-                                            // En móviles (xs) ocupa el 100%, en escritorio (md) vuelve a su ancho natural
                                             width: { xs: '100%', md: 'auto' },
-                                            minWidth: { md: '250px' } // Opcional: para que no se vea muy pequeño en PC
+                                            minWidth: { md: '240px' } 
                                         }
                                     }
-                                }}
-                            />
+                                 }}
+                        />
                         </LocalizationProvider>
                     </Grid>
                 </Grid>
@@ -115,7 +150,7 @@ export const AccionFormPage: React.FC = () => {
                 {/* Puedes agregar aquí una tabla o más campos según necesites */}
 
             </CustomTabPanel>
-            
+
         </MainCard>
     );
 };

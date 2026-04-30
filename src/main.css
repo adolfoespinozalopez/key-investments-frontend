@@ -5,7 +5,7 @@
 
 /* 1. TEXTFIELDS Y SELECTS (MUI) */
 
-/* 1. 1 TEXTFIELDS READ ONLY */
+/* 1. 1 TEXTFIELD READ ONLY */
 .xsmall-input-read-only .MuiInputBase-input {
     font-size: 0.75rem !important; /* 12px */
     padding: 5px 10px 5px 2px !important;   /* Reducción de aire interno */
@@ -22,7 +22,8 @@
     margin-top: 10px !important;
 }
 
-/* 1. 1 TEXTFIELDS */
+
+/* 1. 1 TEXTFIELDS AND SELECT */
 .xsmall-input .MuiInputBase-input {
     font-size: 0.75rem !important; /* 12px */
     padding: 6px 10px 6px 10px !important;   /* Reducción de aire interno */
@@ -31,20 +32,24 @@
 .xsmall-input .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
     font-size: 0.75rem !important;
     line-height: 1.4em !important;
-    /* Ajusta este translate para que el texto quede centrado verticalmente en tus 30px de altura */
-    transform: translate(6px, 18px) scale(1) !important;
+    background-color: #fff !important;
+    transform: translate(10px, 18px) scale(1) !important;
 }
 .xsmall-input .MuiInputLabel-root.MuiInputLabel-shrink {
     transform: translate(10px, 1px) scale(0.75) !important;
     background-color: #fff; /* Evita que el borde del fieldset raye el texto */
     padding: 0 4px !important;
-    font-weight: 600;
+    
 }
 .xsmall-input .MuiInputBase-sizeSmall {
     margin-top: 10px !important;
 }
 .xsmall-input .MuiFormControl-fullWidth{
     transform: translate(9px, -9px) scale(0.75) !important;
+}
+label.xsmall-input{
+    background-color: #fff;
+    padding: 0 4px !important;
 }
 
 /* 1. 1 DATE PICKER */
@@ -64,7 +69,9 @@
     background-color: #fff !important;
     padding: 0 4px !important;
 }
-
+.MuiPickersInputBase-sectionsContainer{
+    padding: 7px 0 !important;
+}
 
 /* 2. BOTONES (MUI) */
 .xsmall-button {
