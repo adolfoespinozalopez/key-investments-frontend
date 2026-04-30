@@ -20,6 +20,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { CancelTwoTone } from '@mui/icons-material';
 import { _getGrandTotalRow } from 'ag-grid-community';
+import AgenteSearch from './AgenteSearch';
 
 const modalStyle = {
   position: 'absolute' as const,
@@ -116,19 +117,8 @@ export const FormularioInstrumento: React.FC = () => {
               )}
             />
           </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Controller
-              name="agente"
-              control={control}
-              render={({ field }) => (
-                <TextField {...field} select label="Agente" fullWidth
-                  size="small" className="xsmall-input">
-                  <MenuItem value="agente1">Agente 1</MenuItem>
-                  <MenuItem value="agente2">Agente 2</MenuItem>
-                  <MenuItem value="agente3">Agente 3</MenuItem>
-                </TextField>
-              )}
-            />
+          <Grid size={{ xs: 12, md: 6 }} sx={{mt:1.3}}>
+            <AgenteSearch control={control}/>
           </Grid>
 
           {/* TERCERA FILA: Acción */}

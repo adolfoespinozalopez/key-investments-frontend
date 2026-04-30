@@ -127,7 +127,7 @@ div.xsmall-container {
     height: 0.9rem !important;
 }
 
-/* TABS */
+/* 4. TABS */
 
 /* Reducir la altura del contenedor principal de Tabs */
 .xsmall-tabs {
@@ -149,4 +149,10 @@ div.xsmall-container {
 /* Ajustar el indicador (la línea que se mueve abajo) */
 .xsmall-tabs .MuiTabs-indicator {
     height: 2px !important;
+}
+
+/* 4. AUTOCOMPLETE */
+
+.MuiAutocomplete-input{
+    padding: 0px 4px 0px 8px !important;
 }
