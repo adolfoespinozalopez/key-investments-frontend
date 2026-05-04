@@ -1,5 +1,7 @@
+import { Option } from '../types/Option';
+
 export function getData() {
-    return new Promise((resolve) => {
+    return new Promise<Option[]>((resolve) => {
         // Simulamos un retraso de red de 500ms
         setTimeout(() => {
             resolve(

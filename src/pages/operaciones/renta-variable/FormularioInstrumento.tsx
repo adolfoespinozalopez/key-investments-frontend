@@ -20,7 +20,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { CancelTwoTone } from '@mui/icons-material';
 import { _getGrandTotalRow } from 'ag-grid-community';
-import AgenteSearch from './AgenteSearch';
+import AgenteAutocompleteSearch from './AgenteAutocompleteSearch';
 
 const modalStyle = {
   position: 'absolute' as const,
@@ -118,7 +118,7 @@ export const FormularioInstrumento: React.FC = () => {
             />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }} sx={{mt:1.3}}>
-            <AgenteSearch control={control}/>
+            <AgenteAutocompleteSearch control={control}/>
           </Grid>
 
           {/* TERCERA FILA: Acción */}

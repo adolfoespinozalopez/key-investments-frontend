@@ -2,8 +2,8 @@
 import { presetPalettes } from '@ant-design/colors';
 
 // project imports
-import ThemeOption, { PresetColors } from './theme'; // Asegúrate de importar el tipo también
-import { extendPaletteWithChannels } from '../utils/colorUtils';
+import ThemeOption, { PresetColors } from '@/themes/theme/index'; 
+import { extendPaletteWithChannels } from '@/utils/colorUtils';
 
 const greyAscent = ['#fafafa', '#bfbfbf', '#434343', '#1f1f1f'];
 

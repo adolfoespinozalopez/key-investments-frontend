@@ -11,12 +11,10 @@ import { SxProps, Theme } from '@mui/material';
 
 // project imports
 import MainCard from '../MainCard';
-import { navigation } from '../../core/layout/navigation';
+import { navigation } from '@/core/layout/navigation';
 
-// assets
-import ApartmentOutlined from '@mui/icons-material/ApartmentOutlined';
+
 import HomeOutlined from '@mui/icons-material/HomeOutlined';
-import HomeFilled from '@mui/icons-material/HomeFilled';
 
 // ==============================|| TYPES ||============================== //
 

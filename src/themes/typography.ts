@@ -1,8 +1,6 @@
 // material-ui
 import { TypographyVariantsOptions } from '@mui/material/styles';
 
-// ==============================|| DEFAULT THEME - TYPOGRAPHY ||============================== //
-
 // Usamos TypographyVariantsOptions para que sea compatible con las opciones del tema
 export default function Typography(fontFamily: string): TypographyVariantsOptions {
   return {

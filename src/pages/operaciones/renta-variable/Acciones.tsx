@@ -33,8 +33,8 @@ import {
 } from 'ag-grid-community';
 
 // data
-import { getData } from '../../../api/acciones';
-import { Accion } from '../../../api/Accion';
+import { getData } from '../../../api/accionesData';
+import { Accion } from '../../../types/Accion';
 
 ModuleRegistry.registerModules([
   RowSelectionModule,

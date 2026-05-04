@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, MouseEvent, ChangeEvent } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
@@ -20,24 +19,28 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project imports
-import IconButton from 'components/@extended/IconButton';
-import AnimateButton from 'components/@extended/AnimateButton';
+import IconButton from '@/components/@extended/IconButton';
+import AnimateButton from '@/components/@extended/AnimateButton';
 
-// assets
-import EyeOutlined from '@ant-design/icons/EyeOutlined';
-import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
+// Definimos la interfaz de las Props
+interface AuthLoginProps {
+  isDemo?: boolean;
+}
 
 // ============================|| JWT - LOGIN ||============================ //
 
-export default function AuthLogin({ isDemo = false }) {
-  const [checked, setChecked] = React.useState(false);
+export function AuthLogin({ isDemo = false }: AuthLoginProps) {
+  const [checked, setChecked] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
@@ -53,15 +56,31 @@ export default function AuthLogin({ isDemo = false }) {
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string()
             .required('Password is required')
-            .test('no-leading-trailing-whitespace', 'Password cannot start or end with spaces', (value) => value === value.trim())
+            .test(
+              'no-leading-trailing-whitespace', 
+              'Password cannot start or end with spaces', 
+              (value) => value === value?.trim()
+            )
             .max(10, 'Password must be less than 10 characters')
         })}
+        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+          try {
+            // Aquí iría tu lógica de login
+            if (isDemo) {
+              console.log('Login demo con:', values);
+            }
+          } catch (err: any) {
+            setStatus({ success: false });
+            setErrors({ submit: err.message });
+            setSubmitting(false);
+          }
+        }}
       >
         {({ errors, handleBlur, handleChange, touched, values }) => (
           <form noValidate>
             <Grid container spacing={3}>
-              <Grid size={12}>
-                <Stack sx={{ gap: 1 }}>
+              <Grid size={{ xs: 12 }} >
+                <Stack spacing={1}>
                   <InputLabel htmlFor="email-login">Email Address</InputLabel>
                   <OutlinedInput
                     id="email-login"
@@ -81,13 +100,14 @@ export default function AuthLogin({ isDemo = false }) {
                   </FormHelperText>
                 )}
               </Grid>
-              <Grid size={12}>
-                <Stack sx={{ gap: 1 }}>
+              
+              <Grid size={{ xs: 12 }}>
+                <Stack spacing={1}>
                   <InputLabel htmlFor="password-login">Password</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
-                    id="-password-login"
+                    id="password-login"
                     type={showPassword ? 'text' : 'password'}
                     value={values.password}
                     name="password"
@@ -102,7 +122,7 @@ export default function AuthLogin({ isDemo = false }) {
                           edge="end"
                           color="secondary"
                         >
-                          {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                          {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -115,13 +135,14 @@ export default function AuthLogin({ isDemo = false }) {
                   </FormHelperText>
                 )}
               </Grid>
-              <Grid sx={{ mt: -1 }} size={12}>
-                <Stack direction="row" sx={{ gap: 2, alignItems: 'baseline', justifyContent: 'space-between' }}>
+
+              <Grid size={{ xs: 12 }} sx={{ mt: -1 }}>
+                <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
                   <FormControlLabel
                     control={
                       <Checkbox
                         checked={checked}
-                        onChange={(event) => setChecked(event.target.checked)}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => setChecked(event.target.checked)}
                         name="checked"
                         color="primary"
                         size="small"
@@ -134,9 +155,10 @@ export default function AuthLogin({ isDemo = false }) {
                   </Link>
                 </Stack>
               </Grid>
-              <Grid size={12}>
+
+              <Grid size={{ xs: 12 }}>
                 <AnimateButton>
-                  <Button fullWidth size="large" variant="contained" color="primary">
+                  <Button fullWidth size="large" type="submit" variant="contained" color="primary">
                     Login
                   </Button>
                 </AnimateButton>
@@ -148,5 +170,3 @@ export default function AuthLogin({ isDemo = false }) {
     </>
   );
 }
-
-AuthLogin.propTypes = { isDemo: PropTypes.bool };

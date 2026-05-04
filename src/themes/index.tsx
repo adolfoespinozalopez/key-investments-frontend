@@ -5,10 +5,10 @@ import { createTheme, StyledEngineProvider, ThemeProvider, ThemeOptions } from '
 import CssBaseline from '@mui/material/CssBaseline';
 
 // project imports
-import useConfig from '../hooks/useConfig';
-import CustomShadows from './custom-shadows';
-import { buildPalette } from './palette';
-import Typography from './typography';
+import useConfig from '@/hooks/useConfig';
+import CustomShadows from '@/themes/custom-shadows';
+import { buildPalette } from '@/themes/palette';
+import Typography from '@/themes/typography';
 
 // ==============================|| TYPES ||============================== //
 

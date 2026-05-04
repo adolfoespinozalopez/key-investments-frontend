@@ -1,6 +1,7 @@
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path' // 1. Importamos path para manejar rutas de carpetas
 
 export default defineConfig({
   optimizeDeps: {
@@ -15,6 +16,12 @@ export default defineConfig({
   },
   plugins: [react()],
   //base: '/key-investments-frontend/', // Configuración para GitHub Pages
+  // 2. Añadimos la resolución de alias
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
   base: '/',
   server: {
     host: false,
