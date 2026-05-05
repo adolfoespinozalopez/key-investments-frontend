@@ -18,15 +18,24 @@ import { DepositosPage } from "../pages/operaciones/renta-fija/Depositos";
 import { FondosMutuosPage } from "../pages/operaciones/renta-variable/FondosMutuos";
 import { BonosPage } from "../pages/operaciones/renta-fija/Bonos";
 import { DerivadosPage } from "../pages/operaciones/DerivadosPage";
+import { AuthGuard } from "./AuthGuard";
 
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes: RouteObject = {
   path: "/",
-  element: <MainLayout />,
+  element: (
+    <AuthGuard>
+      <MainLayout />
+    </AuthGuard>
+  ), 
   children: [
     {
       index: true,
+      element: <DashboardPage /> 
+    },
+    {
+      path: 'dashboard',
       element: <DashboardPage />
     },
     // --- SECCIÓN DEFINICIÓN ---

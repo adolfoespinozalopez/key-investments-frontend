@@ -23,17 +23,13 @@ import { Formik } from 'formik';
 import IconButton from '@/components/@extended/IconButton';
 import AnimateButton from '@/components/@extended/AnimateButton';
 
+// assets
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-// Definimos la interfaz de las Props
-interface AuthLoginProps {
-  isDemo?: boolean;
-}
-
 // ============================|| JWT - LOGIN ||============================ //
 
-export function AuthLogin({ isDemo = false }: AuthLoginProps) {
+export function AuthLogin() {
   const [checked, setChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -157,7 +153,7 @@ export function AuthLogin({ isDemo = false }: AuthLoginProps) {
               </Grid>
 
               <Grid size={{ xs: 12 }} sx={{ mt: -1 }}>
-                <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2}>
+                <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={0}>
                   <FormControlLabel
                     control={
                       <Checkbox

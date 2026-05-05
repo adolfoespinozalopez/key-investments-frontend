@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 // project imports
 import { AuthFooter } from './AuthFooter';
 //import Logo from '@/components/logo';
-import AuthCard from './AuthCard';
+import { AuthCard } from './AuthCard';
 import { AuthBackground } from './AuthBackground';
 
 // Definimos la interfaz para las props
@@ -23,7 +23,6 @@ export function AuthWrapper({ children }: AuthWrapperProps) {
     <Box sx={{ minHeight: '100vh' }}>
       <AuthBackground />
       <Stack sx={{ minHeight: '100vh', justifyContent: 'flex-end' }}>
-        {/* Eliminamos size={12} de Box ya que no es una prop válida para Box en MUI */}
         <Box sx={{ px: 3, mt: 3 }}>
           {/* <Logo to="/" /> */}
         </Box>

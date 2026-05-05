@@ -8,7 +8,7 @@ import { AuthCardProps } from '@/types/AuthCardProps';
 
 // ==============================|| AUTHENTICATION - CARD WRAPPER ||============================== //
 
-export default function AuthCard({ children, ...other }: AuthCardProps) {
+export function AuthCard({ children, ...other }: AuthCardProps) {
   const theme = useTheme();
 
   return (

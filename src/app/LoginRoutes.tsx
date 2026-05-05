@@ -10,7 +10,9 @@ import Loadable from '@/components/Loadable';
 const LoginPage = Loadable(lazy(() =>
     import('@/pages/auth/LoginPage').then(module => ({ default: module.LoginPage }))
 ));
-//const RegisterPage = Loadable(lazy(() => import('@/pages/auth/Register')));
+const RegisterPage = Loadable(lazy(() =>
+    import('@/pages/auth/RegisterPage').then(module => ({ default: module.RegisterPage }))
+));
 
 // ==============================|| AUTH ROUTING ||============================== //
 
@@ -18,17 +20,12 @@ const LoginRoutes: RouteObject = {
     path: '/',
     children: [
         {
-            path: '/',
-            children: [
-                {
-                    path: 'login',
-                    element: <LoginPage />
-                },
-                //{
-                //  path: 'register',
-                //  element: <RegisterPage />
-                //}
-            ]
+            path: 'login',
+            element: <LoginPage />
+        },
+        {
+            path: 'register',
+            element: <RegisterPage />
         }
     ]
 };
