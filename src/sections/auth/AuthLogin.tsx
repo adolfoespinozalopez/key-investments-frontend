@@ -1,5 +1,6 @@
 import React, { useState, MouseEvent, ChangeEvent } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import Button from '@mui/material/Button';
@@ -35,6 +36,7 @@ interface AuthLoginProps {
 export function AuthLogin({ isDemo = false }: AuthLoginProps) {
   const [checked, setChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -48,27 +50,43 @@ export function AuthLogin({ isDemo = false }: AuthLoginProps) {
     <>
       <Formik
         initialValues={{
-          email: 'info@codedthemes.com',
-          password: '123456',
+          email: 'info@keysolutions.com',
+          password: 'abc.1234',
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+          email: Yup.string()
+            .email('Debe ser un correo electrónico válido.')
+            .max(255)
+            .required('El correo es requerido'),
           password: Yup.string()
-            .required('Password is required')
+            .required('La contraseña es requerida')
+            .max(10, 'La contraseña debe tener menos de 10 caracteres')
             .test(
-              'no-leading-trailing-whitespace', 
-              'Password cannot start or end with spaces', 
+              'no-leading-trailing-whitespace',
+              'La contraseña no puede comenzar ni terminar con espacios',
               (value) => value === value?.trim()
-            )
-            .max(10, 'Password must be less than 10 characters')
+            )												
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            // Aquí iría tu lógica de login
-            if (isDemo) {
-              console.log('Login demo con:', values);
-            }
+            // 1. Simulación de llamada a API
+            console.log('Intentando login con:', values);
+            
+            // Aquí llamarías a tu servicio: const response = await loginService(values);
+            // Supongamos que recibimos un token y datos del usuario:
+            const mockToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...";
+            const userData = { email: values.email, role: 'admin' };
+
+            // 2. Almacenamiento en LocalStorage
+            localStorage.setItem('token', mockToken);
+            localStorage.setItem('user', JSON.stringify(userData));
+
+            setStatus({ success: true });
+            setSubmitting(false);
+
+            // 3. Redirección (opcional)
+            navigate('/dashboard');
           } catch (err: any) {
             setStatus({ success: false });
             setErrors({ submit: err.message });
@@ -76,12 +94,12 @@ export function AuthLogin({ isDemo = false }: AuthLoginProps) {
           }
         }}
       >
-        {({ errors, handleBlur, handleChange, touched, values }) => (
-          <form noValidate>
+        {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
+          <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <Grid size={{ xs: 12 }} >
-                <Stack spacing={1}>
-                  <InputLabel htmlFor="email-login">Email Address</InputLabel>
+                <Stack sx={{ gap: 1 }}>
+                  <InputLabel htmlFor="email-login">Correo</InputLabel>
                   <OutlinedInput
                     id="email-login"
                     type="email"
@@ -91,6 +109,7 @@ export function AuthLogin({ isDemo = false }: AuthLoginProps) {
                     onChange={handleChange}
                     placeholder="Enter email address"
                     fullWidth
+                    size="small"
                     error={Boolean(touched.email && errors.email)}
                   />
                 </Stack>
@@ -103,9 +122,8 @@ export function AuthLogin({ isDemo = false }: AuthLoginProps) {
               
               <Grid size={{ xs: 12 }}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="password-login">Password</InputLabel>
+                  <InputLabel htmlFor="password-login">Contraseña</InputLabel>
                   <OutlinedInput
-                    fullWidth
                     error={Boolean(touched.password && errors.password)}
                     id="password-login"
                     type={showPassword ? 'text' : 'password'}
@@ -113,6 +131,8 @@ export function AuthLogin({ isDemo = false }: AuthLoginProps) {
                     name="password"
                     onBlur={handleBlur}
                     onChange={handleChange}
+                    fullWidth
+                    size="small"
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -148,18 +168,23 @@ export function AuthLogin({ isDemo = false }: AuthLoginProps) {
                         size="small"
                       />
                     }
-                    label={<Typography variant="h6">Keep me sign in</Typography>}
+                    label={<Typography variant="h6">No cerrar sesión</Typography>}
                   />
                   <Link variant="h6" component={RouterLink} to="#" color="text.primary">
-                    Forgot Password?
+                    He olvidado mi contraseña
                   </Link>
                 </Stack>
               </Grid>
 
               <Grid size={{ xs: 12 }}>
                 <AnimateButton>
-                  <Button fullWidth size="large" type="submit" variant="contained" color="primary">
-                    Login
+                  <Button 
+                    disableElevation
+                    disabled={isSubmitting}
+                    fullWidth size="large" variant="contained"
+                    type="submit"
+                    color="primary">
+                    Entrar
                   </Button>
                 </AnimateButton>
               </Grid>

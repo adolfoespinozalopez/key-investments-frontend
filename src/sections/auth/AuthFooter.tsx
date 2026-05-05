@@ -22,8 +22,8 @@ export function AuthFooter() {
       >
         <Typography variant="subtitle2" color="secondary">
           © Made with love by Team{' '}
-          <Link href="https://codedthemes.com/" target="_blank" underline="hover">
-            CodedThemes
+          <Link href="https://keysolutions.com.pe/" target="_blank" underline="hover">
+            Key Solutions
           </Link>
         </Typography>
 
@@ -35,7 +35,7 @@ export function AuthFooter() {
             variant="subtitle2"
             color="secondary"
             component={Link}
-            href="https://mui.com/store/terms/"
+            href="https://keysolutions.com.pe/"
             target="_blank"
             underline="hover"
           >
@@ -45,7 +45,7 @@ export function AuthFooter() {
             variant="subtitle2"
             color="secondary"
             component={Link}
-            href="https://mui.com/legal/privacy/"
+            href="https://keysolutions.com.pe/"
             target="_blank"
             underline="hover"
           >

@@ -15,10 +15,6 @@ export function LoginPage() {
   return (
     <AuthWrapper>
       <Grid container spacing={3}>
-        {/* 
-          Si usas Grid v2 (MUI 5.15+), mantén 'size={12}'. 
-          Si usas Grid v1 (MUI 5 estándar), cámbialo a 'item xs={12}'.
-        */}
         <Grid size={{ xs: 12 }} >
           <Stack 
             direction="row" 
@@ -36,7 +32,7 @@ export function LoginPage() {
               sx={{ textDecoration: 'none' }} 
               color="primary"
             >
-              Don&apos;t have an account?
+              No tienes una cuenta?
             </Typography>
           </Stack>
         </Grid>
