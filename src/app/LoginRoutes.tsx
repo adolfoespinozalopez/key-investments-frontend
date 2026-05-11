@@ -1,18 +1,12 @@
-import { lazy } from 'react';
-
-// third-party
 import { RouteObject } from 'react-router-dom';
 
 // project imports
-import Loadable from '@/components/Loadable';
+import { Loadable } from '@/components/Loadable';
+import { lazyImport } from './lazyImport';
 
-// jwt auth - Ajustamos las rutas con tus alias
-const LoginPage = Loadable(lazy(() =>
-    import('@/pages/auth/LoginPage').then(module => ({ default: module.LoginPage }))
-));
-const RegisterPage = Loadable(lazy(() =>
-    import('@/pages/auth/RegisterPage').then(module => ({ default: module.RegisterPage }))
-));
+// render- Páginas actuales
+const LoginPage = Loadable(lazyImport(() => import('@/pages/auth/LoginPage'), 'LoginPage'));
+const RegisterPage = Loadable(lazyImport(() => import('@/pages/auth/RegisterPage'), 'RegisterPage'));
 
 // ==============================|| AUTH ROUTING ||============================== //
 

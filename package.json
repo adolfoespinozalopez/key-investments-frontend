@@ -29,10 +29,13 @@
     "framer-motion": "^12.38.0",
     "pnpm": "^10.33.0",
     "react": "^18.3.1",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.73.1",
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^6.22.3",
+    "simplebar-react": "^3.3.2",
+    "swr": "^2.4.1",
     "yup": "^1.7.1",
     "zustand": "^4.5.2"
   },

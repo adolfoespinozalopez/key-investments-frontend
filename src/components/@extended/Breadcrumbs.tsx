@@ -51,7 +51,7 @@ interface BreadcrumbsProps {
 
 // ==============================|| BREADCRUMBS COMPONENT ||============================== //
 
-export default function Breadcrumbs({
+export function Breadcrumbs({
   card = false,
   custom = false,
   divider = false,

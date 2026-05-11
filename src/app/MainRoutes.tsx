@@ -1,24 +1,30 @@
-// third-party
 import { RouteObject, Navigate } from "react-router-dom";
+
+// project imports
+import { Loadable } from '@/components/Loadable';
+import { lazyImport } from './lazyImport';
+
+//validacion Login
+import { AuthGuard } from "./AuthGuard";
 
 // Layout
 import { MainLayout } from "../core/layout/MainLayout";
 
-// Páginas actuales
-import { DashboardPage } from "../pages/DashboardPage";
-import { PortfolioPage } from "../pages/PortfolioPage";
-import { MonedaForm } from "../pages/MonedaForm";
-import { LinePage } from "../pages/LinePage";
-import { EmpresaPage } from "../pages/definicion/EmpresaPage";
-import { MercadoPage } from "../pages/definicion/MercadoPage";
-import { PolizaPage } from "../pages/definicion/PolizaPage";
-import { AccionesPage } from "../pages/operaciones/renta-variable/Acciones";
-import { AccionFormPage } from "../pages/operaciones/renta-variable/AccionFormPage";
-import { DepositosPage } from "../pages/operaciones/renta-fija/Depositos";
-import { FondosMutuosPage } from "../pages/operaciones/renta-variable/FondosMutuos";
-import { BonosPage } from "../pages/operaciones/renta-fija/Bonos";
-import { DerivadosPage } from "../pages/operaciones/DerivadosPage";
-import { AuthGuard } from "./AuthGuard";
+// render- Páginas actuales
+const DashboardPage = Loadable(lazyImport(() => import('@/pages/DashboardPage'), 'DashboardPage'));
+const PortfolioPage = Loadable(lazyImport(() => import('@/pages/PortfolioPage'), 'PortfolioPage'));
+const MonedaForm = Loadable(lazyImport(() => import('@/pages/MonedaForm'), 'MonedaForm'));
+const LinePage = Loadable(lazyImport(() => import('@/pages/LinePage'), 'LinePage'));
+const EmpresaPage = Loadable(lazyImport(() => import('@/pages/definicion/EmpresaPage'), 'EmpresaPage'));
+const MercadoPage = Loadable(lazyImport(() => import('@/pages/definicion/MercadoPage'), 'MercadoPage'));
+const PolizaPage = Loadable(lazyImport(() => import('@/pages/definicion/PolizaPage'), 'PolizaPage'));
+//Acciones CRUD
+import { AccionesPage } from "@/pages/operaciones/renta-variable/Acciones";
+const AccionFormPage = Loadable(lazyImport(() => import('@/pages/operaciones/renta-variable/AccionFormPage'), 'AccionFormPage'));
+const DepositosPage = Loadable(lazyImport(() => import('@/pages/operaciones/renta-fija/Depositos'), 'DepositosPage'));
+const FondosMutuosPage = Loadable(lazyImport(() => import('@/pages/operaciones/renta-variable/FondosMutuos'), 'FondosMutuosPage'));
+const BonosPage = Loadable(lazyImport(() => import('@/pages/operaciones/renta-fija/Bonos'), 'BonosPage'));
+const DerivadosPage = Loadable(lazyImport(() => import('@/pages/operaciones/DerivadosPage'), 'DerivadosPage'));
 
 // ==============================|| MAIN ROUTING ||============================== //
 

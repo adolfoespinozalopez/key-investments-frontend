@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Menu, MenuItem, SubMenu, Sidebar, sidebarClasses } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import { navigation } from "./navigation";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { SimpleBarScroll } from "@/components/third-party/SimpleBarScroll";
+import { handlerDrawerOpen, useGetMenuMaster } from '@/api/menu';
 
 const SidebarItem = ({ item }: { item: any }) => {
   const location = useLocation();
@@ -30,87 +33,66 @@ const SidebarItem = ({ item }: { item: any }) => {
   );
 };
 
-export const AppSidebar = ({
-  collapsed,
-  toggled,
-  setToggled
-}: {
-  collapsed: boolean;
-  toggled: boolean;
-  setToggled: (value: boolean) => void;
-}) => {
+export const AppSidebar = () => {
+  const { menuMaster } = useGetMenuMaster();
+  const drawerOpen = menuMaster?.isDashboardDrawerOpened ?? false;
+  
   return (
-    <Sidebar
-      collapsed={collapsed}
-      toggled={toggled}
-      onBackdropClick={() => setToggled(false)}
-      breakPoint="md"
-      backgroundColor="#fff"
-      rootStyles={{
-        color: '#607489',
-        width: '280px', 
-        minWidth: '280px',
-        // Fix opcional: ocultar el punto en colapsado si no lo hiciste por CSS global
-        [`.${sidebarClasses.collapsed} .ps-submenu-expand-icon`]: {
-          display: 'none',
-        },
-      }}
-    >
-      {/* Renderizado condicional: 
-          Si NOT collapsed (!collapsed), entonces muestra el div 
-      */}
-      {!collapsed && (
-        <div style={{ padding: '0 24px', margin: '8px 0px' }}>
-          <Typography
-            variant="body2"
-            fontWeight={600}
-            style={{ opacity: '0.7', letterSpacing: '0.5px' }}
+    <SimpleBarScroll sx={{ height: '100dvh', '& .simplebar-content': { display: 'flex', flexDirection: 'column' } }}>
+      <Box component="nav" aria-label="mailbox folders">
+        <Sidebar
+          collapsed={!drawerOpen}
+          toggled={drawerOpen}
+          onBackdropClick={() => handlerDrawerOpen(false)}
+          breakPoint="lg"
+          backgroundColor="#fff"
+          rootStyles={{
+            color: '#607489',
+            height: '100dvh'
+          }}
+        >
+          {/* Renderizado condicional: 
+            Si NOT collapsed (!collapsed), entonces muestra el div 
+        */}
+          {drawerOpen && (
+            <div style={{ padding: '0 24px', margin: '8px 0px' }}>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                style={{ opacity: '0.7', letterSpacing: '0.5px' }}
+              >
+                Mesa de Dinero
+              </Typography>
+            </div>
+          )}
+          <Menu
+            menuItemStyles={{
+              button: {
+                height: '35px', // Altura reducida de cada fila
+                transition: 'background-color 0.2s ease-in-out, color 0.2s ease-in-out',
+                '&:hover': {
+                  backgroundColor: '#f0f4f8',
+                  color: '#1976d2',
+                },
+                [`&.ps-active`]: {
+                  backgroundColor: '#e3f2fd',
+                  color: '#1976d2',
+                  fontWeight: '800',
+                },
+              },
+              label: {
+                fontSize: '12px', // Texto ligeramente más pequeño para ahorrar espacio
+                fontWeight: 500,
+              }
+              
+            }}
           >
-            Mesa de Dinero
-          </Typography>
-        </div>
-      )}
-      <Menu
-        menuItemStyles={{
-          button: {
-            height: '35px', // Altura reducida de cada fila
-            transition: 'background-color 0.2s ease-in-out, color 0.2s ease-in-out',
-            '&:hover': {
-              backgroundColor: '#f0f4f8',
-              color: '#1976d2',
-            },
-            [`&.ps-active`]: {
-              backgroundColor: '#e3f2fd',
-              color: '#1976d2',
-              fontWeight: '800',
-            },
-          },
-          label: {
-            fontSize: '12px', // Texto ligeramente más pequeño para ahorrar espacio
-            fontWeight: 500,
-          },
-          icon: {
-            // Aplicamos el tamaño directamente al SVG interno
-            '& svg': {
-              fontSize: '18px', // Prueba con 18px o 16px
-              width: '18px',
-              height: '18px',
-            },
-            // También definimos el contenedor
-            display: 'flex',
-            justifyContent: 'center',
-            color: '#022950',
-            width: '20px',    // Define un ancho fijo para que todos se alineen igual
-            height: '20px',   // Define una altura fija para mantener la proporción
-            minWidth: '15px'
-            
-          }
-        }}
-      >
-        {navigation.map((item, index) => (
-          <SidebarItem key={`${item.label}-${index}`} item={item} />
-        ))}
-      </Menu>
-    </Sidebar>
+            {navigation.map((item, index) => (
+              <SidebarItem key={`${item.label}-${index}`} item={item} />
+            ))}
+          </Menu>
+        </Sidebar>
+      </Box>
+    </SimpleBarScroll>
   );
 };

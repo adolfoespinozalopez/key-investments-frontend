@@ -1,42 +1,36 @@
-import { useState } from "react";
-import { Outlet, Link as RouterLink } from "react-router-dom";
-import { Box, Toolbar, useMediaQuery } from "@mui/material";
-import { AppSidebar } from "./Sidebar";
-import { Header } from "./Header";
-import { DRAWER_WIDTH } from '../../config';
-import { MINI_DRAWER_WIDTH } from '../../config';
-import Breadcrumbs from "../../components/@extended/Breadcrumbs";
-import Footer from "./Footer";
+import { useEffect } from 'react';
+import { Outlet } from "react-router-dom";
+
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/material/Box';
+
+//project imports
+import { AppSidebar } from "@/core/layout/Sidebar";
+import { Header } from "@/core/layout/Header/Header";
+import { Breadcrumbs } from "@/components/@extended/Breadcrumbs";
+import { Loader } from '@/components/Loader';
+import { Footer } from "@/core/layout/Footer";
+
+import { handlerDrawerOpen, useGetMenuMaster } from '@/api/menu';
 
 
 export const MainLayout = () => {
-  const isMobile = useMediaQuery("(max-width:768px)");
-  const [collapsed, setCollapsed] = useState(false);
-  const [toggled, setToggled] = useState(false); // Estado para móviles
-  const drawerWidth = isMobile ? MINI_DRAWER_WIDTH : collapsed ? MINI_DRAWER_WIDTH : DRAWER_WIDTH;
+  const { menuMasterLoading } = useGetMenuMaster();
+  const downXL = useMediaQuery((theme) => theme.breakpoints.down('xl'));
 
-  // Función inteligente: decide si colapsar o abrir el drawer
-  const toggle = () => {
-    if (isMobile) {
-      setToggled(!toggled);
-    } else {
-      setCollapsed(!collapsed);
-    }
-  };
+  // set media wise responsive drawer
+  useEffect(() => {
+    handlerDrawerOpen(!downXL);
+  }, [downXL]);
+
+  if (menuMasterLoading) return <Loader />;
 
   return (
-    <Box sx={{ display: 'flex', width: '100%' }}>      
+    <Box sx={{ display: 'flex', width: '100%' }}>
+      <Header />
+      <AppSidebar />
       
-      <Header 
-        toggle={toggle} 
-        collapsed={isMobile ? !toggled : collapsed}/>
-
-      <AppSidebar 
-          collapsed={collapsed} 
-          toggled={toggled} 
-          setToggled={setToggled} 
-        />
-
       <Box component="main" sx={{ width: 'calc(100% - 260px)', flexGrow: 1, p: { xs: 1, sm: 2 } }}>
         <Toolbar sx={{ mt: 'inherit' }} />
         <Box

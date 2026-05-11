@@ -1,8 +1,8 @@
 // ==============================|| THEME CONSTANT ||============================== //
 
-export const APP_DEFAULT_PATH = '/';
-export const DRAWER_WIDTH = 30;
-export const MINI_DRAWER_WIDTH = 70;
+export const APP_DEFAULT_PATH = '/dashboard';
+export const DRAWER_WIDTH = 250;
+export const MINI_DRAWER_WIDTH = 80;
 
 const config = {
   fontFamily: `'Public Sans', sans-serif`,
