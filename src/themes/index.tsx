@@ -69,9 +69,10 @@ export default function ThemeCustomization({ children }: ThemeCustomizationProps
       {/* Nota: En MUI v6, el ThemeProvider con colorSchemes 
           maneja automáticamente el modo light/dark 
       */}
-      <ThemeProvider 
-        theme={themes} 
-        disableTransitionOnChange 
+      <ThemeProvider
+        theme={themes}
+        disableTransitionOnChange
+        modeStorageKey="theme-mode"
         defaultMode="light"
       >
         <CssBaseline enableColorScheme />

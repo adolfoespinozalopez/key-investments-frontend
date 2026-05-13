@@ -8,12 +8,14 @@ import Box from '@mui/material/Box';
 //project imports
 import { AppSidebar } from "@/core/layout/Sidebar";
 import { Header } from "@/core/layout/Header/Header";
-import { Breadcrumbs } from "@/components/@extended/Breadcrumbs";
-import { Loader } from '@/components/Loader';
 import { Footer } from "@/core/layout/Footer";
+import { Loader } from '@/components/Loader';
+import { Breadcrumbs } from "@/components/@extended/Breadcrumbs";
 
 import { handlerDrawerOpen, useGetMenuMaster } from '@/api/menu';
+import { SimpleBarScroll } from '@/components/third-party/SimpleBarScroll';
 
+// ==============================|| MAIN LAYOUT ||============================== //
 
 export const MainLayout = () => {
   const { menuMasterLoading } = useGetMenuMaster();
@@ -30,22 +32,34 @@ export const MainLayout = () => {
     <Box sx={{ display: 'flex', width: '100%' }}>
       <Header />
       <AppSidebar />
-      
-      <Box component="main" sx={{ width: 'calc(100% - 260px)', flexGrow: 1, p: { xs: 1, sm: 2 } }}>
-        <Toolbar sx={{ mt: 'inherit' }} />
-        <Box
-          sx={{
-            ...{ px: { xs: 0, sm: 2 } },
-            position: 'relative',
-            minHeight: 'calc(100vh - 110px)',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <Breadcrumbs />
-          <Outlet />
-          <Footer />
-        </Box>
+
+      <Box component="main"
+        sx={{
+          width: 'calc(100% - 260px)',
+          flexGrow: 1,
+          p: 1,
+          overflow: 'hidden'
+        }}>
+        <SimpleBarScroll sx={{
+          height: 'calc(100vh - 30px)',
+          '& .simplebar-content': { display: 'flex', flexDirection: 'column' }
+        }}>
+          <Toolbar sx={{ mt: 'inherit' }} />
+          <Box
+            sx={{
+              p: 1,
+              position: 'relative',
+              minHeight: 'calc(100vh - 110px)',
+              overflow: 'hidden'
+            }}
+          >
+
+            <Breadcrumbs />
+            <Outlet />
+            <Footer />
+
+          </Box>
+        </SimpleBarScroll>
       </Box>
     </Box>
   );

@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { Menu, MenuItem, SubMenu, Sidebar, sidebarClasses } from "react-pro-sidebar";
+import { Menu, MenuItem, SubMenu, Sidebar } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
-import { navigation } from "./navigation";
 import { Box, Typography } from "@mui/material";
+
+// project imports
+import { navigation } from "./navigation";
 import { SimpleBarScroll } from "@/components/third-party/SimpleBarScroll";
 import { handlerDrawerOpen, useGetMenuMaster } from '@/api/menu';
+import SidebarHeader from "./SidebarHeader";
 
 const SidebarItem = ({ item }: { item: any }) => {
   const location = useLocation();
@@ -36,32 +38,36 @@ const SidebarItem = ({ item }: { item: any }) => {
 export const AppSidebar = () => {
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster?.isDashboardDrawerOpened ?? false;
-  
+
   return (
-    <SimpleBarScroll sx={{ height: '100dvh', '& .simplebar-content': { display: 'flex', flexDirection: 'column' } }}>
-      <Box component="nav" aria-label="mailbox folders">
-        <Sidebar
-          collapsed={!drawerOpen}
-          toggled={drawerOpen}
-          onBackdropClick={() => handlerDrawerOpen(false)}
-          breakPoint="lg"
-          backgroundColor="#fff"
-          rootStyles={{
-            color: '#607489',
-            height: '100dvh'
-          }}
-        >
+    <Box component="nav" aria-label="mailbox folders" sx={{overflow: 'hidden',display: 'flex',flexDirection: 'column'}}>
+      <Sidebar
+        collapsed={!drawerOpen}
+        toggled={drawerOpen}
+        onBackdropClick={() => handlerDrawerOpen(false)}
+        breakPoint="lg"
+        backgroundColor="#fff"
+        className="sidebar"
+        rootStyles={{
+          color: '#607489'
+        }}
+      >
+        {/* Logo */}
+        <SidebarHeader open={drawerOpen} />
+        <SimpleBarScroll sx={{
+          height: 'calc(100vh - 60px)',
+          '& .simplebar-content': { display: 'flex', flexDirection: 'column' }
+        }}>
           {/* Renderizado condicional: 
             Si NOT collapsed (!collapsed), entonces muestra el div 
-        */}
+          */}
           {drawerOpen && (
             <div style={{ padding: '0 24px', margin: '8px 0px' }}>
               <Typography
                 variant="body2"
                 fontWeight={600}
-                style={{ opacity: '0.7', letterSpacing: '0.5px' }}
-              >
-                Mesa de Dinero
+                style={{ opacity: '0.7', letterSpacing: '0.5px' }}>
+                MESA DE DINERO
               </Typography>
             </div>
           )}
@@ -71,28 +77,28 @@ export const AppSidebar = () => {
                 height: '35px', // Altura reducida de cada fila
                 transition: 'background-color 0.2s ease-in-out, color 0.2s ease-in-out',
                 '&:hover': {
-                  backgroundColor: '#f0f4f8',
-                  color: '#1976d2',
+                  backgroundColor: 'var(--palette-primary-lighter)',
+                  color: 'var(--palette-primary-main)',
                 },
                 [`&.ps-active`]: {
-                  backgroundColor: '#e3f2fd',
-                  color: '#1976d2',
-                  fontWeight: '800',
-                },
+                  backgroundColor: 'var(--palette-primary-lighter)',
+                  borderRight: drawerOpen ? '2px solid' : 'none',
+                  borderColor: drawerOpen ? 'var(--palette-primary-main)' : 'transparent',
+                  color: 'var(--palette-primary-main)'
+                }
               },
               label: {
                 fontSize: '12px', // Texto ligeramente más pequeño para ahorrar espacio
                 fontWeight: 500,
               }
-              
             }}
           >
             {navigation.map((item, index) => (
               <SidebarItem key={`${item.label}-${index}`} item={item} />
             ))}
           </Menu>
-        </Sidebar>
-      </Box>
-    </SimpleBarScroll>
+        </SimpleBarScroll>
+      </Sidebar>
+    </Box >
   );
 };

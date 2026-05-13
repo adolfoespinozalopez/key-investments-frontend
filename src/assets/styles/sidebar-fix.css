@@ -6,7 +6,9 @@
 .ps-sidebar-root.ps-collapsed .ps-submenu-expand-icon {
     display: flex !important; /* Forzamos a que se muestre */
 }
-
+.ps-sidebar-container{
+    overflow: hidden !important; /* Evitamos que se muestre el scroll */
+}
 /* React Pro Sidebar suele convertir el icono en un punto usando border-radius y dimensiones pequeñas */
 .ps-sidebar-root.ps-collapsed .ps-submenu-expand-icon > span {
     background-color: transparent !important;

@@ -1,3 +1,6 @@
+body{
+    overflow: hidden !important;
+}
 /* ==========================================================================
    HOJA DE ESTILOS GLOBAL: DENSIDAD XSMALL (ALTA DENSIDAD)
    Ideal para aplicaciones financieras y dashboards de mesa de dinero.

@@ -3,8 +3,12 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './app/router'
 import { AppProviders } from './app/providers'
+
 //Hoja de estilo personalizada
 import './assets/styles/sidebar-fix.css'
+
+// scroll bar
+import 'simplebar-react/dist/simplebar.min.css';
 
 //Hoja de estilos globales (Tailwind) 
 import './main.css'

@@ -24,7 +24,6 @@ export const Header = () => {
     const mainHeader = (
         <Toolbar>
             <IconButton
-                aria-label="open drawer"
                 onClick={() => handlerDrawerOpen(!drawerOpen)}
                 edge="start"
                 color="secondary"
@@ -61,6 +60,18 @@ export const Header = () => {
         }
     };
 
+    const appBarMobile : AppBarProps = {
+        position: 'fixed',
+        color: 'inherit',
+        elevation: 0,
+        sx: {
+            borderBottom: '1px solid',
+            borderBottomColor: 'divider',
+            zIndex: 100,
+            width: { xs: '100%', md: drawerOpen ? `calc(100% - ${DRAWER_WIDTH}px)` : `calc(100% - ${MINI_DRAWER_WIDTH}px)` }
+        }
+    };
+
     return (
         <>
             {!downLG ? (
@@ -68,7 +79,7 @@ export const Header = () => {
                     {mainHeader}
                 </AppBarStyled>
             ) : (
-                <AppBar {...appBar}>{mainHeader}</AppBar>
+                <AppBar {...appBarMobile}>{mainHeader}</AppBar>
             )}
         </>
     );
