@@ -55,34 +55,31 @@ export const AccionFormPage: React.FC = () => {
                     backgroundColor: '#fbfbfb', borderRadius: 2, border: '1px solid #e0e0e0'
                 }}>
                 {/* Botón Salir: Estilo secundario o Outline */}
-                <Grid size="auto" >
-                    <Button
-                        variant="text"
-                        color="inherit"
-                        size="small"
-                        className="xsmall-button"
-                        startIcon={<KeyboardBackspaceIcon />}
-                        onClick={() => navigate('..', { relative: 'path' })} // Regresa al listado
-                        sx={{ fontWeight: 'bold' }}
-                    >
-                        Regresar
-                    </Button>
-                </Grid>
+                <Button
+                    variant="text"
+                    color="inherit"
+                    size="small"
+                    className="xsmall-button"
+                    startIcon={<KeyboardBackspaceIcon />}
+                    onClick={() => navigate('..', { relative: 'path' })} // Regresa al listado
+                    sx={{ fontWeight: 'bold' }}
+                >
+                    Regresar
+                </Button>
 
                 {/* Botón Grabar: Estilo primario o Success */}
-                <Grid size="auto">
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        className="xsmall-button"
-                        startIcon={<SaveIcon />}
-                        sx={{ textTransform: 'none', fontWeight: 'bold' }}
-                    >
-                        Grabar Operación
-                    </Button>
-                </Grid>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    className="xsmall-button"
+                    startIcon={<SaveIcon />}
+                    sx={{ fontWeight: 'bold' }}
+                    form="instrumento-form"
+                >
+                    Grabar Operación
+                </Button>
             </Grid>
 
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -149,7 +146,6 @@ export const AccionFormPage: React.FC = () => {
                 {/* Puedes agregar aquí una tabla o más campos según necesites */}
 
             </CustomTabPanel>
-
         </MainCard>
     );
 };

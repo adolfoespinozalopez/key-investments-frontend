@@ -87,6 +87,7 @@ export default function AutocompleteSearch({ control, name, label, fetchFn }: Ge
                 label={label}
                 size="small"
                 fullWidth
+                className="xsmall-input-search"
                 slotProps={{
                   input: {
                     ...params.InputProps,

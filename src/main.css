@@ -159,3 +159,7 @@ div.xsmall-container {
 .MuiAutocomplete-input{
     padding: 0px 4px 0px 8px !important;
 }
+.xsmall-input-search .MuiFormLabel-root:not(.MuiFormLabel-filled){
+    font-size: 0.785rem !important;
+    transform: translate(14px, 6px) scale(1);
+}

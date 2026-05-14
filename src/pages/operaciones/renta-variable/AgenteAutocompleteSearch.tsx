@@ -1,4 +1,4 @@
-import AutocompleteSearch from '../../../components/AutocompleteSearch';
+import AutocompleteSearch from '@/components/AutocompleteSearch';
 import { getData } from '../../../api/agenteData';
 
 export default function AgenteAutocompleteSearch({ control }: { control: any }) {
