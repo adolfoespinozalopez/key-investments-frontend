@@ -58,9 +58,7 @@ export const navigation = [
     children: [
       { label: "Opción 1", path: "/procesos/moneda", icon: <AccountBalanceIcon /> },
       { label: "Opción 2", path: "/procesos/line", icon: <InventoryIcon /> },
-      { label: "Opción 3", path: "/", icon: <AccountTreeIcon /> },
-      { label: "Opción 4", path: "/", icon: <AccountTreeIcon /> },
-      { label: "Opción 5", path: "/", icon: <AccountTreeIcon /> },
+      { label: "Opción 3", path: "/", icon: <AccountTreeIcon /> }
     ]
   },
   {

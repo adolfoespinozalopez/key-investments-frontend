@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Box, TextField, Typography, Stack, Button, Divider, InputAdornment } from '@mui/material';
+import { Box, TextField, Typography, Stack, Button, Divider, InputAdornment, Grid } from '@mui/material';
 import { IconButton, Popover, FormGroup, FormControlLabel, Checkbox, Tooltip } from '@mui/material';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import SearchIcon from '@mui/icons-material/Search';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import AddIcon from '@mui/icons-material/Add';
 
 //otros
@@ -236,110 +237,90 @@ export const AccionesPage: React.FC = () => {
   return (
     <MainCard title="Listado de Compra y Venta de Acciones">
 
-      <Box sx={{ width: '100%' }}>
-        <Stack
-          // 'column' en móviles (xs), 'row' desde tablets (sm)
-          direction={{ xs: 'column', sm: 'row' }}
-          // En móvil se alinea al inicio, en escritorio se mantiene al final para nivelar con los inputs
-          alignItems={{ xs: 'stretch', sm: 'flex-end' }}
-          justifyContent="space-between"
-          spacing={{ xs: 2, sm: 0 }} // Espacio entre bloques cuando se apilan
-          sx={{ mb: 3 }}
-        >
-          {/* Lado Izquierdo: Filtros y Búsqueda */}
-          <Stack
-            direction={{ xs: 'column', md: 'row' }}
-            spacing={2}
-            alignItems={{ xs: 'stretch', md: 'flex-end' }}
-          >
-            <Stack direction="row" spacing={2}>
-
-              <Box sx={{ mb: 2, p: 0 }}>
-                <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 600 }}>
-                  Fecha de Operación
-                </Typography>
-                <Stack direction="row" spacing={2}>
-                  <TextField
-                    label="Desde"
-                    type="date"
-                    size="small"
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
-                    InputLabelProps={{ shrink: true }}
-                    sx={{
-                      '& .MuiInputBase-input': {
-                        padding: '6.5px 14px',
-                      }
-                    }}
-                  />
-                  <TextField
-                    label="Hasta"
-                    type="date"
-                    size="small"
-                    value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                    InputLabelProps={{ shrink: true }}
-                    sx={{
-                      '& .MuiInputBase-input': {
-                        padding: '7px 14px',
-                      }
-                    }}
-                  />
-                </Stack>
-              </Box>
-            </Stack>
-
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              startIcon={<SearchIcon />}
-              onClick={handleSearch}
-              sx={{ height: { xs: 40, md: 33 } }} // Un poco más alto en móvil para ser más fácil de tocar
-            >
-              Buscar
-            </Button>
-
-            <Button
-              variant="text"
-              color="secondary"
-              size="small"
-              onClick={handleReset}
-              sx={{ height: { xs: 40, md: 33 }, fontSize: '0.75rem' }}
-            >
-              Limpiar
-            </Button>
-
-            <Tooltip title="Columnas">
-              <IconButton
-                onClick={handleClick}
+      <Box sx={{ width: '100%', mb: 2 }}>
+        <Grid container spacing={1}>
+          <Grid size={{ xs: 12, sm: 'auto'}}>
+            <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 600 }}>Fecha de Operación</Typography>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+              <TextField
+                label="Desde"
+                type="date"
+                size="small"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                InputLabelProps={{ shrink: true }}
                 sx={{
-                  border: '1px solid #e0e0e0',
-                  borderRadius: 1,
-                  height: { xs: 40, md: 33 },
-                  width: 33,
-                  bgcolor: 'white'
-                }} >
-                <ViewColumnIcon sx={{ fontSize: 18 }} />
-              </IconButton>
-            </Tooltip>
-          </Stack>
-
-          {/* Lado Derecho: Acción de Crear */}
-          <Button
-            variant="contained"
-            color="success"
-            startIcon={<AddIcon />}
-            size="medium"
-            sx={{
-              mt: { xs: 1, sm: 0 }, // Margen superior solo en móviles
-              height: { xs: 45, sm: 'auto' }
-            }}
-            onClick={() => navigate('crear')} // Ruta hacia la nueva página
-          >
-            Crear
-          </Button>
-        </Stack>
+                  '& .MuiInputBase-input': {
+                    padding: '6.5px 14px',
+                  }
+                }}
+              />
+              <TextField
+                label="Hasta"
+                type="date"
+                size="small"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                InputLabelProps={{ shrink: true }}
+                sx={{
+                  '& .MuiInputBase-input': {
+                    padding: '7px 14px',
+                  }
+                }}
+              />
+            </Stack>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 'auto' }}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ height: 33, mt: {xs: 0, sm: 3.5}}}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                startIcon={<SearchIcon />}
+                onClick={handleSearch}>
+                Buscar
+              </Button>
+              <Button
+                variant="text"
+                color="secondary"
+                size="small"
+                startIcon={<CleaningServicesIcon />}
+                onClick={handleReset}>
+                Limpiar
+              </Button>
+            </Stack>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 'grow' }} 
+                sx={{ display: { xs: 'block', sm: 'flex' }, justifyContent: { sm: 'flex-end' } }}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mt: { xs: 0, sm: 3.5 } }}>
+              <Tooltip title="Columnas">
+                <IconButton
+                  onClick={handleClick}
+                  sx={{
+                    border: '1px solid',
+                    borderColor: 'divider', 
+                    borderRadius: 1,
+                    height: 33,
+                    width: 33,
+                    bgcolor: 'white'
+                  }} >
+                  <ViewColumnIcon sx={{ fontSize: 18 }} />
+                </IconButton>
+              </Tooltip>
+              {/* Lado Derecho: Acción de Crear */}
+              <Button
+                variant="contained"
+                color="success"
+                size="medium"
+                sx={{ height: 35, fontWeight: 'bold' }}
+                startIcon={<AddIcon />}
+                onClick={() => navigate('crear')} // Ruta hacia la nueva página
+              >
+                Crear
+              </Button>
+            </Stack>
+          </Grid>
+        </Grid>
       </Box>
       <div className="ag-theme-quartz" style={{ height: 440, width: '100%' }}>
         <AgGridReact<Accion>
