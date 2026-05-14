@@ -8,9 +8,10 @@ interface GenericAutocompleteProps {
   name: string;
   label: string;
   fetchFn: () => Promise<Option[]>; // La función que trae la data
+  rules?: object; // <-- Nueva prop para validaciones
 }
 
-export default function AutocompleteSearch({ control, name, label, fetchFn }: GenericAutocompleteProps) {
+export default function AutocompleteSearch({ control, name, label, fetchFn, rules }: GenericAutocompleteProps) {
   const [options, setOptions] = React.useState<Option[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [inputValue, setInputValue] = React.useState('');
@@ -38,7 +39,8 @@ export default function AutocompleteSearch({ control, name, label, fetchFn }: Ge
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, value } }) => (
+      rules={rules} // <-- Pasamos las reglas de validación
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
         <Autocomplete
           id={`autocomplete-${name}`}
           options={options}
@@ -88,6 +90,8 @@ export default function AutocompleteSearch({ control, name, label, fetchFn }: Ge
                 size="small"
                 fullWidth
                 className="xsmall-input-search"
+                error={!!error} 
+                helperText={error?.message}
                 slotProps={{
                   input: {
                     ...params.InputProps,

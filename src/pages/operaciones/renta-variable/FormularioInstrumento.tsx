@@ -148,7 +148,7 @@ export const FormularioInstrumento: React.FC = () => {
             />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }} sx={{mt:1.3}}>
-            <AgenteAutocompleteSearch control={control}/>
+            <AgenteAutocompleteSearch control={control} rules={{ required: "El agente es obligatorio" }}/>
           </Grid>
 
           {/* TERCERA FILA: Acción */}
