@@ -89,7 +89,7 @@ export const FormularioInstrumento: React.FC = () => {
             <Controller
               name="tipo"
               control={control}
-              rules={{ required: "El campo es obligatorio" }}
+              rules={{ required: "El Tipo es obligatorio" }}
               render={({ field }) => (
                 <TextField {...field} 
                   select 
@@ -122,7 +122,7 @@ export const FormularioInstrumento: React.FC = () => {
             <Controller
               name="mercado"
               control={control}
-              rules={{ required: "El campo es obligatorio" }}
+              rules={{ required: "El Mercado es obligatorio" }}
               render={({ field }) => (
                 <TextField
                   {...field}
@@ -148,7 +148,7 @@ export const FormularioInstrumento: React.FC = () => {
             />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }} sx={{mt:1.3}}>
-            <AgenteAutocompleteSearch control={control} rules={{ required: "El agente es obligatorio" }}/>
+            <AgenteAutocompleteSearch control={control} rules={{ required: "El Agente es obligatorio" }}/>
           </Grid>
 
           {/* TERCERA FILA: Acción */}
@@ -156,7 +156,7 @@ export const FormularioInstrumento: React.FC = () => {
             <Controller
               name="accion"
               control={control}
-              rules={{ required: "El campo es obligatorio" }}
+              rules={{ required: "La acción es obligatoria" }}
               render={({ field }) => (
                 <TextField
                   {...field}
