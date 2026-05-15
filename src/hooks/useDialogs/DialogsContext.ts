@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { OpenDialog, CloseDialog } from './useDialogs';
+
+//project imports
+import { OpenDialog, CloseDialog } from '@/hooks/useDialogs/useDialogs';
 
 const DialogsContext = React.createContext<{
   open: OpenDialog;

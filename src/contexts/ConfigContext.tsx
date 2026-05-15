@@ -1,8 +1,8 @@
 import { createContext, useMemo, ReactNode } from 'react';
 
 // project imports
-import config from '../config';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import config from '@/config';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 // 1. Interfaz para el estado - Agregamos flexibilidad
 export interface ConfigProps {

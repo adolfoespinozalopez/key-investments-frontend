@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+// material-ui
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,7 +9,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import useEventCallback from '@mui/utils/useEventCallback';
-import DialogsContext from './DialogsContext';
+
+//project imports
+import DialogsContext from '@/hooks/useDialogs/DialogsContext';
 
 export interface OpenDialogOptions<R> {
   /**

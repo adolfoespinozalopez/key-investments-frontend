@@ -16,13 +16,3 @@
     position: static !important;
     display: inline-block !important;
 }
-
-/* Custom header styling */
-.ag-header-cell-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    letter-spacing: 0.05em;
-    font-size: 0.85em;
-    word-break: break-word;
-    text-align: end;
-}

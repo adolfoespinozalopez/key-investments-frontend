@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Box, TextField, Typography, Stack, Button, Divider, InputAdornment, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+// material-ui
+import { Box, TextField, Typography, Stack, Button, InputAdornment, Grid } from '@mui/material';
 import { IconButton, Popover, FormGroup, FormControlLabel, Checkbox, Tooltip } from '@mui/material';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import SearchIcon from '@mui/icons-material/Search';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import AddIcon from '@mui/icons-material/Add';
 
-//otros
-import { useNavigate } from 'react-router-dom';
-
 // project imports
-import MainCard from '../../../components/MainCard';
+import MainCard from '@/components/MainCard';
+import { Accion } from '@/types/Accion';
 
 // AG Grid Imports
 import { AgGridReact } from 'ag-grid-react';
@@ -34,8 +35,7 @@ import {
 } from 'ag-grid-community';
 
 // data
-import { getData } from '../../../api/accionesData';
-import { Accion } from '../../../types/Accion';
+import { getData } from '@/api/accionesData';
 
 ModuleRegistry.registerModules([
   RowSelectionModule,

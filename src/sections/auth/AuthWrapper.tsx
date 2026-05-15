@@ -6,10 +6,10 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
 // project imports
-import { AuthFooter } from './AuthFooter';
-//import Logo from '@/components/logo';
-import { AuthCard } from './AuthCard';
-import { AuthBackground } from './AuthBackground';
+import { AuthFooter } from '@/sections/auth/AuthFooter';
+import Logo from '@/components/logo/LogoSection';
+import { AuthCard } from '@/sections/auth/AuthCard';
+import { AuthBackground } from '@/sections/auth/AuthBackground';
 
 // Definimos la interfaz para las props
 interface AuthWrapperProps {
@@ -24,7 +24,7 @@ export function AuthWrapper({ children }: AuthWrapperProps) {
       <AuthBackground />
       <Stack sx={{ minHeight: '100vh', justifyContent: 'flex-end' }}>
         <Box sx={{ px: 3, mt: 3 }}>
-          {/* <Logo to="/" /> */}
+          <Logo to="/" />
         </Box>
         
         <Box>

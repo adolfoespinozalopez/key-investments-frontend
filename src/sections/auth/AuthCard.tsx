@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 
 // project imports
 import MainCard from '@/components/MainCard';
+
+//types
 import { AuthCardProps } from '@/types/AuthCardProps';
 
 // ==============================|| AUTHENTICATION - CARD WRAPPER ||============================== //

@@ -10,10 +10,10 @@ import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 import { SxProps, Theme } from '@mui/material';
 
 // project imports
-import MainCard from '../MainCard';
+import MainCard from '@/components/MainCard';
 import { navigation } from '@/core/layout/navigation';
 
-
+//assets
 import HomeOutlined from '@mui/icons-material/HomeOutlined';
 
 // ==============================|| TYPES ||============================== //

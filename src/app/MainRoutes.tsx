@@ -2,13 +2,13 @@ import { RouteObject, Navigate } from "react-router-dom";
 
 // project imports
 import { Loadable } from '@/components/Loadable';
-import { lazyImport } from './lazyImport';
+import { lazyImport } from '@/app/lazyImport';
 
 //validacion Login
-import { AuthGuard } from "./AuthGuard";
+import { AuthGuard } from "@/app/AuthGuard";
 
 // Layout
-import { MainLayout } from "../core/layout/MainLayout";
+import { MainLayout } from "@/core/layout/MainLayout";
 
 // render- Páginas actuales
 const DashboardPage = Loadable(lazyImport(() => import('@/pages/DashboardPage'), 'DashboardPage'));

@@ -1,5 +1,7 @@
 import * as React from 'react';
-import NotificationsContext from './NotificationsContext';
+
+//project imports
+import NotificationsContext from '@/hooks/useNotifications/NotificationsContext';
 
 export interface ShowNotificationOptions {
   /**

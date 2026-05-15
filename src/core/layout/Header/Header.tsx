@@ -4,8 +4,9 @@ import AppBar, { AppBarProps } from '@mui/material/AppBar';
 import { Toolbar, Box, Avatar, Typography } from "@mui/material";
 
 // project imports
-import { AppBarStyled } from './AppBarStyled';
+import { AppBarStyled } from '@/core/layout/Header/AppBarStyled';
 import IconButton from '@/components/@extended/IconButton';
+import { Profile } from '@/core/layout/Profile';
 
 import { handlerDrawerOpen, useGetMenuMaster } from '@/api/menu';
 import { DRAWER_WIDTH, MINI_DRAWER_WIDTH } from '@/config';
@@ -44,6 +45,7 @@ export const Header = () => {
                 <Typography variant="body2">Admin</Typography>
                 <Avatar />
             </Box>
+            <Profile />
         </Toolbar>
     );
 

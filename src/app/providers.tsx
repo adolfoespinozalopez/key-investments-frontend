@@ -1,9 +1,11 @@
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import NotificationsProvider from "../hooks/useNotifications/NotificationsProvider";
-import DialogsProvider from "../hooks/useDialogs/DialogsProvider";
-import ThemeCustomization from '../themes';
-import { ConfigProvider } from "../contexts/ConfigContext";
+
+//project imports
+import NotificationsProvider from "@/hooks/useNotifications/NotificationsProvider";
+import DialogsProvider from "@/hooks/useDialogs/DialogsProvider";
+import ThemeCustomization from '@/themes/index';
+import { ConfigProvider } from "@/contexts/ConfigContext";
 
 const queryClient = new QueryClient();
 

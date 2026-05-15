@@ -2,7 +2,7 @@ import { RouteObject } from 'react-router-dom';
 
 // project imports
 import { Loadable } from '@/components/Loadable';
-import { lazyImport } from './lazyImport';
+import { lazyImport } from '@/app/lazyImport';
 
 // render- Páginas actuales
 const LoginPage = Loadable(lazyImport(() => import('@/pages/auth/LoginPage'), 'LoginPage'));

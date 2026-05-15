@@ -5,8 +5,8 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { SxProps, Theme } from '@mui/material/styles';
 
 // project imports
-import Logo from './LogoMain';
-import LogoIcon from './LogoIcon';
+import Logo from '@/components/logo/LogoMain';
+import LogoIcon from '@/components/logo/LogoIcon';
 import { APP_DEFAULT_PATH } from '@/config';
 import { JSX } from 'react';
 

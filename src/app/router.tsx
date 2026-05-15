@@ -1,8 +1,9 @@
-import MainRoutes from './MainRoutes';
-import LoginRoutes from './LoginRoutes';
 import { createBrowserRouter } from 'react-router-dom';
 
-// Ahora puedes combinarlos así:
+//project imports
+import MainRoutes from '@/app/MainRoutes';
+import LoginRoutes from '@/app/LoginRoutes';
+
 export const router = createBrowserRouter([MainRoutes, LoginRoutes], { 
   basename: "/key-investments-frontend" 
 });

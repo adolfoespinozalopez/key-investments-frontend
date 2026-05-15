@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { Box, Tab, Card, Tabs, Grid, Button, Typography, Paper, Divider, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem } from '@mui/material';
-import MainCard from '../../../components/MainCard';
+import { useNavigate } from 'react-router-dom';
 
-//fecha
+// material-ui
+import { Box, Tab, Card, Tabs, Grid, Button, Typography, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem } from '@mui/material';
+import MainCard from '@/components/MainCard';
+
+//datePicker
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/es';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+//assets
 import SaveIcon from '@mui/icons-material/Save';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
-//otros
-import { useNavigate } from 'react-router-dom';
+//project imports
 import { FormularioInstrumento } from './FormularioInstrumento';
 
 interface TabPanelProps {

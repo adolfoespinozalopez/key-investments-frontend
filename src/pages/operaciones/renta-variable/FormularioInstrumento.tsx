@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, Controller, useWatch } from 'react-hook-form';
+
+// material-ui
 import {
   Box,
   TextField,
@@ -12,15 +14,16 @@ import {
   Modal,
   Grid
 } from '@mui/material';
+
+//datePicker
 import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 //assets
 import SearchIcon from '@mui/icons-material/Search';
 
-//fecha
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { _getGrandTotalRow } from 'ag-grid-community';
 
 //project imports

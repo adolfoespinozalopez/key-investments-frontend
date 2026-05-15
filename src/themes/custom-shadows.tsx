@@ -3,6 +3,8 @@ import { Palette } from '@mui/material/styles';
 
 // project imports
 import { withAlpha } from '@/utils/colorUtils';
+
+//types
 import { CustomShadowProps } from '@/types/CustomShadowProps';
 
 // ==============================|| DEFAULT THEME - CUSTOM SHADOWS ||============================== //

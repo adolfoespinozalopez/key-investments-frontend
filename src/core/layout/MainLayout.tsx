@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet } from "react-router-dom";
 
+// material-ui
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
@@ -11,7 +12,6 @@ import { Header } from "@/core/layout/Header/Header";
 import { Footer } from "@/core/layout/Footer";
 import { Loader } from '@/components/Loader';
 import { Breadcrumbs } from "@/components/@extended/Breadcrumbs";
-
 import { handlerDrawerOpen, useGetMenuMaster } from '@/api/menu';
 import { SimpleBarScroll } from '@/components/third-party/SimpleBarScroll';
 

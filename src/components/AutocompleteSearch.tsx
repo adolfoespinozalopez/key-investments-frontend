@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { TextField, Autocomplete, Box, Typography, CircularProgress } from '@mui/material';
 import { Controller, Control } from 'react-hook-form';
-import { Option } from '../types/Option';
+
+//project imports
+import { Option } from '@/types/Option';
 
 interface GenericAutocompleteProps {
   control: Control<any>;

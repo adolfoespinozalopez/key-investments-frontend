@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 import { navigation } from "./navigation";
 import { SimpleBarScroll } from "@/components/third-party/SimpleBarScroll";
 import { handlerDrawerOpen, useGetMenuMaster } from '@/api/menu';
-import SidebarHeader from "./SidebarHeader";
+import SidebarHeader from "@/core/layout/SidebarHeader";
 
 const SidebarItem = ({ item }: { item: any }) => {
   const location = useLocation();

@@ -1,5 +1,8 @@
+//project imports
 import AutocompleteSearch from '@/components/AutocompleteSearch';
-import { getData } from '../../../api/agenteData';
+
+//data
+import { getData } from '@/api/agenteData';
 
 export default function AgenteAutocompleteSearch({ control, rules }: { control: any, rules?: object  }) {
   

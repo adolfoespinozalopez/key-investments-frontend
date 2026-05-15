@@ -4,7 +4,7 @@ import { forwardRef, ReactNode, Ref } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Card, { CardProps } from '@mui/material/Card';
 import CardContent, { CardContentProps } from '@mui/material/CardContent';
-import CardHeader, { CardHeaderProps } from '@mui/material/CardHeader';
+import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import { SxProps, Theme } from '@mui/material';
 

@@ -1,5 +1,7 @@
-import { useContext } from 'react'; // Cambiamos 'use' por 'useContext'
-import { ConfigContext } from '../contexts/ConfigContext';
+import { useContext } from 'react';
+
+//project imports
+import { ConfigContext } from '@/contexts/ConfigContext';
 
 // ==============================|| CONFIG - HOOKS ||============================== //
 

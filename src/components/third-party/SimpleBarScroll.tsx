@@ -5,12 +5,12 @@ import { styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { SxProps } from '@mui/system';
 
-// project imports 
-import { withAlpha } from '@/utils/colorUtils';
-
 // third-party
 import SimpleBar from 'simplebar-react';
 import { BrowserView, MobileView } from 'react-device-detect';
+
+// project imports 
+import { withAlpha } from '@/utils/colorUtils';
 
 // ==============================|| TYPES ||============================== //
 

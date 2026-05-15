@@ -1,5 +1,5 @@
 body{
-    overflow: hidden !important;
+    overflow-y: hidden !important;
 }
 /* ==========================================================================
    HOJA DE ESTILOS GLOBAL: DENSIDAD XSMALL (ALTA DENSIDAD)
@@ -26,7 +26,7 @@ body{
 }
 
 
-/* 1. 1 TEXTFIELDS AND SELECT */
+/* 1. 2 TEXTFIELDS AND SELECT */
 .xsmall-input .MuiInputBase-input {
     font-size: 0.75rem !important; /* 12px */
     padding: 6px 10px 6px 10px !important;   /* Reducción de aire interno */
@@ -55,7 +55,7 @@ label.xsmall-input{
     padding: 0 4px !important;
 }
 
-/* 1. 1 DATE PICKER */
+/* 1. 3 DATE PICKER */
 .xsmall-input-picker .MuiInputBase-root {
     height: 30px !important; /* Altura ultra compacta */
     font-size: 0.75rem !important;
@@ -131,7 +131,6 @@ div.xsmall-container {
 }
 
 /* 4. TABS */
-
 /* Reducir la altura del contenedor principal de Tabs */
 .xsmall-tabs {
     min-height: 32px !important; /* Altura total de la barra de pestañas */
@@ -154,12 +153,22 @@ div.xsmall-container {
     height: 2px !important;
 }
 
-/* 4. AUTOCOMPLETE */
-
+/* 5. AUTOCOMPLETE */
 .MuiAutocomplete-input{
     padding: 0px 4px 0px 8px !important;
 }
 .xsmall-input-search .MuiFormLabel-root:not(.MuiFormLabel-filled){
     font-size: 0.785rem !important;
     transform: translate(14px, 6px) scale(1);
+}
+
+/* 6. Ag-Grid */
+/* Custom header styling */
+.ag-header-cell-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.05em;
+    font-size: 0.85em;
+    word-break: break-word;
+    text-align: end;
 }

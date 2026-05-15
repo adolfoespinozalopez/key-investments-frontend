@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import { BarChart } from '@mui/x-charts/BarChart';
 
 // project imports
-import MonthlyBarChart from '../sections/dashboard/MonthlyBarChart';
-import MainCard from '../components/MainCard';
+import MonthlyBarChart from '@/sections/dashboard/MonthlyBarChart';
+import MainCard from '@/components/MainCard';
 
 export const LinePage = () => {
   return (

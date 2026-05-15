@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+// material-ui
 import Alert from '@mui/material/Alert';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
@@ -9,12 +11,15 @@ import type { SnackbarCloseReason } from '@mui/material/Snackbar';
 import type { CloseReason } from '@mui/material/SpeedDial';
 import CloseIcon from '@mui/icons-material/Close';
 import useSlotProps from '@mui/utils/useSlotProps';
-import NotificationsContext from './NotificationsContext';
+
+//project imports
+import NotificationsContext from '@/hooks/useNotifications/NotificationsContext';
+
 import type {
   CloseNotification,
   ShowNotification,
   ShowNotificationOptions,
-} from './useNotifications';
+} from '@/hooks/useNotifications/useNotifications';
 
 const RootPropsContext = React.createContext<NotificationsProviderProps | null>(
   null,
