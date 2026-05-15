@@ -14,8 +14,8 @@ export default defineConfig({
     ],
   },
   plugins: [react()],
-  base: '/key-investments-frontend/', // Configuración para GitHub Pages
-  //base: '/',  // Configuración para desarrollo local/Azure Static Web Apps
+  //base: '/key-investments-frontend/', // Configuración para GitHub Pages
+  base: '/',  // Configuración para desarrollo local/Azure Static Web Apps
   // 2. Añadimos la resolución de alias
   resolve: {
     alias: {
