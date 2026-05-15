@@ -41,10 +41,6 @@ export const Header = () => {
                 Key Portfolio Mangement
             </Typography>
 
-            <Box display="flex" alignItems="center" gap={2}>
-                <Typography variant="body2">Admin</Typography>
-                <Avatar />
-            </Box>
             <Profile />
         </Toolbar>
     );

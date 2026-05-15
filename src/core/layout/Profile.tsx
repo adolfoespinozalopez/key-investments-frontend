@@ -1,4 +1,5 @@
 import { useState, MouseEvent } from 'react';
+
 // material-ui
 import { 
   Menu, 
@@ -9,17 +10,25 @@ import {
   Avatar, 
   IconButton, 
   Typography,
-  Box
+  Box,
+  Grid,
+  Stack,
+  Tooltip
 } from '@mui/material';
 
 // assets
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import avatar4 from '@/assets/images/users/avatar-4.png';
+
+// Importamos el hook de cierre de sesión
+import { useLogout } from '@/hooks/useLogout';
 
 export const Profile = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const { handleLogout } = useLogout();
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -29,26 +38,30 @@ export const Profile = () => {
     setAnchorEl(null);
   };
 
-  const handleLogout = () => {
+  const onLogoutClick = () => {
     handleClose();
     // Aquí ejecutas la lógica para limpiar tokens, caché de SWR, etc.
     console.log('Cerrando sesión...');
+    handleLogout();
   };
 
   return (
     <>
-      <IconButton
-        onClick={handleClick}
-        size="small"
-        sx={{ ml: 2, padding: 0.5 }}
-        aria-controls={open ? 'profile-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-      >
-        {/* Puedes pasarle iniciales o una imagen real */}
-        <Avatar sx={{ width: 36, height: 36, bgcolor: 'primary.main' }}>AD</Avatar>
-      </IconButton>
-
+      <Typography variant="h6">Administrador</Typography>
+      <Tooltip title="Perfil" disableInteractive arrow>
+        <IconButton
+            onClick={handleClick}
+            size="small"
+            sx={{ ml: 0.5, padding: 0.5 }}
+            aria-controls={open ? 'profile-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+        >
+            {/* Puedes pasarle iniciales o una imagen real */}
+            
+            <Avatar alt="Perfil" src={avatar4} sx={{ '&:hover': { outline: '1px solid', outlineColor: 'primary.main' }}}>AD</Avatar>
+        </IconButton>
+      </Tooltip>
       <Menu
         anchorEl={anchorEl}
         id="profile-menu"
@@ -88,12 +101,26 @@ export const Profile = () => {
       >
         {/* Encabezado del Menú: Identificación rápida del Trader / Usuario */}
         <Box sx={{ px: 2, py: 1.5 }}>
-          <Typography variant="subtitle2" noWrap sx={{ fontWeight: 600 }}>
-            Administrador Key
-          </Typography>
-          <Typography variant="body2" color="text.secondary" noWrap>
-            admin@keyportfolio.com
-          </Typography>
+          <Grid container sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+            <Grid>
+                <Stack direction="row" sx={{ gap: 1.25, alignItems: 'center' }}>
+                    <Avatar alt="Perfil" src={avatar4} sx={{ width: 32, height: 32 }} />
+                    <Stack>
+                        <Typography variant="h6">John Doe</Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Administrador
+                        </Typography>
+                    </Stack>
+                </Stack>
+            </Grid>
+            <Grid>
+                <Tooltip title="Logout">
+                    <IconButton size="large" sx={{ color: 'text.primary' }} onClick={onLogoutClick}>
+                    <LogoutOutlinedIcon />
+                    </IconButton>
+                </Tooltip>
+            </Grid>
+          </Grid>
         </Box>
         
         <Divider sx={{ my: 0.5 }} />
@@ -106,7 +133,7 @@ export const Profile = () => {
           <ListItemText primary="Ver Perfil" primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
 
-        <MenuItem onClick={handleClose} sx={{ py: 1 }}>
+        <MenuItem onClick={handleClose} sx={{ py: 1}}>
           <ListItemIcon>
             <EditOutlinedIcon fontSize="small" color="action" />
           </ListItemIcon>
@@ -116,11 +143,11 @@ export const Profile = () => {
         <Divider sx={{ my: 0.5 }} />
 
         {/* Opción de Salida en color de advertencia discreto */}
-        <MenuItem onClick={handleLogout} sx={{ py: 1, color: 'error.main' }}>
+        <MenuItem onClick={onLogoutClick} sx={{ py: 1, color: 'primary.main' }}>
           <ListItemIcon>
-            <LogoutOutlinedIcon fontSize="small" color="error" />
+            <LogoutOutlinedIcon fontSize="small" color="primary" />
           </ListItemIcon>
-          <ListItemText primary="Cerrar Sesión" primaryTypographyProps={{ variant: 'body2' }} />
+          <ListItemText primary="Cerrar Sesión" />
         </MenuItem>
       </Menu>
     </>
