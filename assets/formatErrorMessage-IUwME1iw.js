@@ -1,0 +1,1 @@
+import{an as o,ao as t,ap as m}from"./index-CkAP98n7.js";function u({props:r,name:e}){return o({props:r,name:e,defaultTheme:t,themeId:m})}function f(r,...e){const s=new URL("https://mui.com/x/production-error");return s.searchParams.set("code",r.toString()),e.forEach(a=>s.searchParams.append("args[]",a)),`MUI X error #${r}; visit ${s} for the full message.`}export{f,u};
