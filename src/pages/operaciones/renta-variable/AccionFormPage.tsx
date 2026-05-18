@@ -18,6 +18,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 //project imports
 import { FormularioInstrumento } from './FormularioInstrumento';
+import { PipelineValidationModal } from './PipelineValidationModal';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -39,20 +40,52 @@ export const AccionFormPage: React.FC = () => {
     const navigate = useNavigate();
     const [tabValue, setTabValue] = useState(0);
     const [fondo, setFondo] = React.useState('');
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState<Dayjs | null>(dayjs());
+
+    // NUEVOS ESTADOS: Control del Pipeline Automatizado
+    const [openPipeline, setOpenPipeline] = useState(false);
+    const [formDataCache, setFormDataCache] = useState<any>(null);
+
+    // Bandera de control: Cambia a true si estás editando para saltar el pipeline
+    const isEdit = false;
 
     const handleChange = (event: SelectChangeEvent) => {
         setFondo(event.target.value as string);
     };
 
-    const [value, setValue] = useState<Dayjs | null>(dayjs('2026-04-28'));
-    const [open, setOpen] = useState(false);
-
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue);
     };
 
+    // Esta función recibe el disparo exitoso de React Hook Form desde el hijo
+    const handleFormSubmitReady = (data: any) => {
+        const payloadCompleto = { ...data, fondo, fechaOperacion: value?.format('YYYY-MM-DD') };
+        
+        if (isEdit) {
+            // SI ES EDICIÓN: Guarda directo sin mostrar pipeline
+            console.log("Guardando directo por edición:", payloadCompleto);
+            // Aquí pones tu mutación/Fetch a la base de datos
+            //navigate('..', { relative: 'path' });
+        } else {
+            // SI ES NUEVO: Cacheamos la data y abrimos el pipeline automatizado
+            setFormDataCache(payloadCompleto);
+            setOpenPipeline(true);
+        }
+    };
+
+    // Se ejecuta SOLAMENTE cuando el pipeline automático termina con éxito de revisar todos los pasos
+    const handlePipelineComplete = () => {
+        setOpenPipeline(false);
+        console.log("Escribiendo definitivo en BD:", formDataCache);
+        
+        // Aquí ejecutas el axios.post / swr mutate definitivo
+        // Al terminar, redireccionas al listado
+        navigate('..', { relative: 'path' });
+    };
+
     return (
-        <MainCard title="Registro de Nueva Acción">
+        <MainCard title={isEdit ? "Editar Acción" : "Registro de Nueva Acción"}>
             <Grid container spacing={2}
                 sx={{
                     ml: 1, mr: 1, mt: 0, mb: 1, p: 0.5, justifyContent: 'flex-end',
@@ -139,7 +172,7 @@ export const AccionFormPage: React.FC = () => {
 
             {/* TAB 1: Ficha de Registro */}
             <CustomTabPanel value={tabValue} index={0}>
-                <FormularioInstrumento />
+                <FormularioInstrumento onValidSubmit={handleFormSubmitReady} />
             </CustomTabPanel>
 
             {/* TAB 2: Regla de Límites */}
@@ -150,6 +183,12 @@ export const AccionFormPage: React.FC = () => {
                 {/* Puedes agregar aquí una tabla o más campos según necesites */}
 
             </CustomTabPanel>
+
+            {/* PIPELINE MODAL AUTOMÁTICO */}
+            <PipelineValidationModal 
+                open={openPipeline} 
+                onComplete={handlePipelineComplete} 
+            />
         </MainCard>
     );
 };

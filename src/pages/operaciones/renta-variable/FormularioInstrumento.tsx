@@ -41,7 +41,11 @@ const modalStyle = {
   borderRadius: 1,
 };
 
-export const FormularioInstrumento: React.FC = () => {
+interface FormularioInstrumentoProps {
+  onValidSubmit: (data: any) => void;
+}
+
+export const FormularioInstrumento: React.FC<FormularioInstrumentoProps> = ({ onValidSubmit }) => {
   const [openMercado, setOpenMercado] = useState(false);
   const [openAccion, setOpenAccion] = useState(false);
 
@@ -77,6 +81,8 @@ export const FormularioInstrumento: React.FC = () => {
 
   const onSubmit = (data: any) => {
     console.log("Datos validados:", data);
+
+    onValidSubmit(data);
   };
 
   return (
