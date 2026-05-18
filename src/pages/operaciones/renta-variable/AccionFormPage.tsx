@@ -81,7 +81,7 @@ export const AccionFormPage: React.FC = () => {
         
         // Aquí ejecutas el axios.post / swr mutate definitivo
         // Al terminar, redireccionas al listado
-        navigate('..', { relative: 'path' });
+        //navigate('..', { relative: 'path' });
     };
 
     return (
