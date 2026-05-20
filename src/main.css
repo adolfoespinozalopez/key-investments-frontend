@@ -26,6 +26,7 @@ body{
 }
 
 
+
 /* 1. 2 TEXTFIELDS AND SELECT */
 .xsmall-input .MuiInputBase-input {
     font-size: 0.75rem !important; /* 12px */
@@ -39,7 +40,7 @@ body{
     transform: translate(10px, 18px) scale(1) !important;
 }
 .xsmall-input .MuiInputLabel-root.MuiInputLabel-shrink {
-    transform: translate(10px, 1px) scale(0.75) !important;
+    transform: translate(10px, -1px) scale(0.75) !important;
     background-color: #fff; /* Evita que el borde del fieldset raye el texto */
     padding: 0 4px !important;
     

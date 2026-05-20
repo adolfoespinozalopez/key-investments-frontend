@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // material-ui
-import { Box, Tab, Card, Tabs, Grid, Button, Typography, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem } from '@mui/material';
+import { Box, Tab, Card, Tabs, Grid, Button, Typography, FormControl, InputLabel, Select, SelectChangeEvent, MenuItem, TextField } from '@mui/material';
 import MainCard from '@/components/MainCard';
 
 //datePicker
@@ -122,7 +122,7 @@ export const AccionFormPage: React.FC = () => {
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Grid container spacing={0.5}>
 
-                    <Grid size={{ xs: 12, md: 6 }} sx={{ p: 1 }}>
+                    <Grid size={{ xs: 12, md: 5 }} sx={{ p: 1 }}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label" size="small" className="xsmall-input">Fondo</InputLabel>
                             <Select 
@@ -139,7 +139,7 @@ export const AccionFormPage: React.FC = () => {
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid size={{ xs: 12, md: 6 }} sx={{ p:1, display: 'flex', justifyContent: 'flex-end' }}>
+                    <Grid size={{ xs: 6, md: 4 }} sx={{ p:1 }}>
                         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es">
                             <DatePicker
                                 label="Fecha de Operación"
@@ -161,6 +161,14 @@ export const AccionFormPage: React.FC = () => {
                                  }}
                         />
                         </LocalizationProvider>
+                    </Grid>
+                    <Grid size={{ xs: 6, md: 3 }} sx={{ p: 1, display: 'flex', justifyContent: 'flex-end' }}>
+                        <Typography variant="h5" color="secondary" sx={{ mr: 2 }}>
+                            Estado:
+                        </Typography>
+                        <Typography variant="h5" color="primary.700">
+                            PENDIENTE
+                        </Typography>
                     </Grid>
                 </Grid>
 
