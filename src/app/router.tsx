@@ -5,5 +5,5 @@ import MainRoutes from '@/app/MainRoutes';
 import LoginRoutes from '@/app/LoginRoutes';
 
 export const router = createBrowserRouter([MainRoutes, LoginRoutes], { 
-  basename: "/" 
+  basename: "/key-investments-frontend" 
 });
