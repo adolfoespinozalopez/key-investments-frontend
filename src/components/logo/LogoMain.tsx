@@ -4,11 +4,7 @@ import { JSX } from 'react';
 // Ajusta la ruta según dónde guardes tus SVGs
 import LogoColorPath from '@/assets/logo/Logo_Full.svg'; 
 
-interface LogoMainProps {
-  reverse?: boolean;
-}
-
-const LogoMain = ({ reverse }: LogoMainProps): JSX.Element => {
+const LogoMain = (): JSX.Element => {
   const theme = useTheme();
 
   return (
@@ -16,11 +12,10 @@ const LogoMain = ({ reverse }: LogoMainProps): JSX.Element => {
       src={LogoColorPath} 
       alt="Key Solutions Logo" 
       style={{ 
-        width: '100%', 
+        width: '89%', 
         // maxWidth: '180px', // Ajusta según necesites
         height: '39px',
-        // Si usas el prop reverse para fondos oscuros, podrías aplicar un filtro
-        filter: reverse ? 'brightness(0) invert(1)' : 'none' 
+        
       }} 
     />
   );

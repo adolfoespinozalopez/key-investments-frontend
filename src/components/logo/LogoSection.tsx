@@ -13,7 +13,6 @@ import { JSX } from 'react';
 // ==============================|| TYPES ||============================== //
 
 interface LogoSectionProps {
-  reverse?: boolean;
   isIcon?: boolean;
   sx?: SxProps<Theme>;
   to?: string;
@@ -21,11 +20,11 @@ interface LogoSectionProps {
 
 // ==============================|| MAIN LOGO - TSX ||============================== //
 
-const LogoSection = ({ reverse, isIcon, sx, to }: LogoSectionProps): JSX.Element => {
+const LogoSection = ({ isIcon, sx, to }: LogoSectionProps): JSX.Element => {
   
   // --- NAMED EXPRESSIONS: Selección del Logo ---
   // Decidimos qué logo mostrar fuera del return para mejorar la claridad.
-  const LogoToRender = isIcon ? <LogoIcon /> : <Logo reverse={reverse} />;
+  const LogoToRender = isIcon ? <LogoIcon /> : <Logo />;
 
   // --- RENDER ---
   return (

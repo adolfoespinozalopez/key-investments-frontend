@@ -24,7 +24,7 @@ export function AuthWrapper({ children }: AuthWrapperProps) {
       <AuthBackground />
       <Stack sx={{ minHeight: '100vh', justifyContent: 'flex-end' }}>
         <Box sx={{ px: 3, mt: 3 }}>
-          <Logo to="/" />
+          <Logo />
         </Box>
         
         <Box>
